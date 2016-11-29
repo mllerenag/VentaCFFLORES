@@ -17,7 +17,7 @@ namespace CFFLORES.WebService
     {
 
         private DAOProducto daoproducto = new DAOProducto();
-        public EProducto ObtenerProducto(string codigobarra, string nombre, string tipo)
+        public List<EProducto> ObtenerProducto(string codigobarra, string nombre, string tipo)
         {
             if (String.IsNullOrEmpty(codigobarra)) codigobarra = "";
             if (String.IsNullOrEmpty(nombre)) nombre = "";
@@ -36,10 +36,10 @@ namespace CFFLORES.WebService
 
             }
 
-            EProducto ObProducto = new EProducto();
+            List<EProducto> ObProducto = new List<EProducto>();
             ObProducto = daoproducto.ObtenerProducto(codigobarra,nombre,tipo);
             /*Se valida que exista Producto*/
-            if (ObProducto == null)
+            if (ObProducto.Capacity == 0)
             {
                 throw new FaultException<ProductoInexistente>(
                     new ProductoInexistente()
@@ -50,48 +50,51 @@ namespace CFFLORES.WebService
                 , new FaultReason("El producto No existe"));
 
             }
-            /*Se valida que el producto este habilitado*/
-            //0 : Habilitado
-            //1: Deshabilitado
-            if (String.IsNullOrEmpty(ObProducto.Estado) || ObProducto.Estado.Equals("1"))
+
+            if (ObProducto.Capacity == 1)
             {
-                throw new FaultException<ProductoInexistente>(
-                    new ProductoInexistente()
-                    {
-                        exCodigo = 13,
-                        exProducto = ObProducto.Nombre.ToString(),
-                        exError = "El producto " + ObProducto.Nombre + " está Deshabilitado"
-                    }
-                , new FaultReason("El producto " + ObProducto.Nombre + " está Deshabilitado"));
+                /*Se valida que el producto este habilitado*/
+                //0 : Habilitado
+                //1: Deshabilitado
+                if (String.IsNullOrEmpty(ObProducto[0].Estado) || ObProducto[0].Estado.Equals("1"))
+                {
+                    throw new FaultException<ProductoInexistente>(
+                        new ProductoInexistente()
+                        {
+                            exCodigo = 13,
+                            exProducto = ObProducto[0].Nombre.ToString(),
+                            exError = "El producto " + ObProducto[0].Nombre + " está Deshabilitado"
+                        }
+                    , new FaultReason("El producto " + ObProducto[0].Nombre + " está Deshabilitado"));
 
+                }
+                /*Se valida que exista Stock*/
+                if (ObProducto[0].Stock == 0)
+                {
+                    throw new FaultException<ProductoInexistente>(
+                        new ProductoInexistente()
+                        {
+                            exCodigo = 11,
+                            exProducto = ObProducto[0].Nombre.ToString(),
+                            exError = "El producto " + ObProducto[0].Nombre + " no cuenta con Stock disponible"
+                        }
+                    , new FaultReason("El producto " + ObProducto[0].Nombre + " no cuenta con Stock disponible"));
+
+                }
+                /*Se valida que  se va agotar Stock*/
+                if (ObProducto[0].Stock <= 10)
+                {
+                    throw new FaultException<ProductoInexistente>(
+                        new ProductoInexistente()
+                        {
+                            exCodigo = 12,
+                            exProducto = ObProducto[0].Nombre.ToString(),
+                            exError = "El producto " + ObProducto[0].Nombre + " está por agotarse"
+                        }
+                    , new FaultReason("El producto " + ObProducto[0].Nombre + " está por agotarse"));
+
+                }
             }
-            /*Se valida que exista Stock*/
-            if (ObProducto.Stock == 0)
-            {
-                throw new FaultException<ProductoInexistente>(
-                    new ProductoInexistente()
-                    {
-                        exCodigo = 11,
-                        exProducto = ObProducto.Nombre.ToString(),
-                        exError = "El producto "+ ObProducto.Nombre + " no cuenta con Stock disponible"
-                    }
-                , new FaultReason("El producto " + ObProducto.Nombre + " no cuenta con Stock disponible"));
-
-            }
-            /*Se valida que  se va agotar Stock*/
-            if (ObProducto.Stock <= 10)
-            {
-                throw new FaultException<ProductoInexistente>(
-                    new ProductoInexistente()
-                    {
-                        exCodigo = 12,
-                        exProducto = ObProducto.Nombre.ToString(),
-                        exError = "El producto " + ObProducto.Nombre + " está por agotarse"
-                    }
-                , new FaultReason("El producto " + ObProducto.Nombre + " está por agotarse"));
-
-            }
-
 
             return ObProducto;
         }

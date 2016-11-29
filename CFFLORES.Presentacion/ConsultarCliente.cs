@@ -23,35 +23,37 @@ namespace CFFLORES.Presentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Equals("") && textBox2.Text.Equals(""))
-            {
+
                 MessageBox.Show("Debe de llenar por lo menos una búsqueda",
                 "Adventencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
-                return;
-            }
 
-            if (textBox1.Text.Length != 8)
-            {
+
+
                 MessageBox.Show("El DNI debe contener 8 caracteres",
                 "Adventencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
-                return;
-            }
 
-            if (textBox1.Text.Equals("44745474"))
-            {
+
                 MessageBox.Show("El cliente no existe",
                 "Adventencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
-                return;
-            }
+
+
+
+                MessageBox.Show("El cliente esta deshabilitado",
+                "Adventencia",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+    
+
 
         }
     }

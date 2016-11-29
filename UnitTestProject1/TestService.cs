@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ServiceModel;
+using System.Collections.Generic;
 
 namespace UnitTestProject1
 {
@@ -97,7 +98,11 @@ namespace UnitTestProject1
             string tipo = "";
             try
             {
-                ProductoWSC.EProducto productocreado = proxy.ObtenerProducto(codigobarra,nombre,tipo);
+
+                ProductoWSC.EProducto[] ObProducto = proxy.ObtenerProducto(codigobarra, nombre, tipo);
+                
+                     Assert.AreEqual(codigobarra, ObProducto[0].codigobarra.ToString());
+
             }
             catch (FaultException<ProductoWSC.ProductoInexistente> error)
             {

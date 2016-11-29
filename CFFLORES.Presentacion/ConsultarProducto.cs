@@ -19,15 +19,6 @@ namespace CFFLORES.Presentacion
             InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-    
-        }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -74,9 +65,5 @@ namespace CFFLORES.Presentacion
 
         }
 
-        private void dgvProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

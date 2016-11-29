@@ -15,15 +15,8 @@ namespace CFFLORES.WebService
     {
         [OperationContract]
         [FaultContract(typeof(ProductoInexistente))]
-        EProducto ObtenerProducto(string codigobarra, string nombre, string tipo);
-        /*
-        [FaultContract(typeof(RepetidoException))]
-        [OperationContract]
-        EProducto CrearProducto(EProducto productos);
-
-        [FaultContract(typeof(RepetidoException))]
-        [OperationContract]
-        EProducto ModificarProducto(EProducto productos);*/
+        List<EProducto> ObtenerProducto(string codigobarra, string nombre, string tipo);
+        
         
         // Listado de Productos
         [OperationContract]

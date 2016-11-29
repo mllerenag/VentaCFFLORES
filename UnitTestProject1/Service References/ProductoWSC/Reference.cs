@@ -221,10 +221,10 @@ namespace UnitTestProject1.ProductoWSC {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ObtenerProducto", ReplyAction="http://tempuri.org/IProducto/ObtenerProductoResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(UnitTestProject1.ProductoWSC.ProductoInexistente), Action="http://tempuri.org/IProducto/ObtenerProductoProductoInexistenteFault", Name="ProductoInexistente", Namespace="http://schemas.datacontract.org/2004/07/CFFLORES.WebService.Errores")]
-        UnitTestProject1.ProductoWSC.EProducto ObtenerProducto(string codigobarra, string nombre, string tipo);
+        UnitTestProject1.ProductoWSC.EProducto[] ObtenerProducto(string codigobarra, string nombre, string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ObtenerProducto", ReplyAction="http://tempuri.org/IProducto/ObtenerProductoResponse")]
-        System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ObtenerProductoAsync(string codigobarra, string nombre, string tipo);
+        System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto[]> ObtenerProductoAsync(string codigobarra, string nombre, string tipo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProducto/ListarProducto", ReplyAction="http://tempuri.org/IProducto/ListarProductoResponse")]
         UnitTestProject1.ProductoWSC.EProducto[] ListarProducto();
@@ -260,11 +260,11 @@ namespace UnitTestProject1.ProductoWSC {
                 base(binding, remoteAddress) {
         }
         
-        public UnitTestProject1.ProductoWSC.EProducto ObtenerProducto(string codigobarra, string nombre, string tipo) {
+        public UnitTestProject1.ProductoWSC.EProducto[] ObtenerProducto(string codigobarra, string nombre, string tipo) {
             return base.Channel.ObtenerProducto(codigobarra, nombre, tipo);
         }
         
-        public System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto> ObtenerProductoAsync(string codigobarra, string nombre, string tipo) {
+        public System.Threading.Tasks.Task<UnitTestProject1.ProductoWSC.EProducto[]> ObtenerProductoAsync(string codigobarra, string nombre, string tipo) {
             return base.Channel.ObtenerProductoAsync(codigobarra, nombre, tipo);
         }
         

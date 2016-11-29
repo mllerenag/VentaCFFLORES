@@ -9,52 +9,62 @@ namespace CFFLORES.WebService.Persistencia
 {
     public class DAOProducto
     {
-        private string cadenaconexion = "Data Source=a1d03a2d-9c0f-4408-a40e-a6c90072de9e.sqlserver.sequelizer.com;Initial Catalog=dba1d03a2d9c0f4408a40ea6c90072de9e;User Id=tvmfwzevhnftvnla;Password=2Ccx6Hj4f3x55DK6Quii6SixnKvTrFciBYEozCMmQGhaFo3U5qeDwtdiuMkumxKF;";
-        //private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
-        public EProducto ObtenerProducto(string codigobarra, string nombre, string tipo)
+        //private string cadenaconexion = "Data Source=a1d03a2d-9c0f-4408-a40e-a6c90072de9e.sqlserver.sequelizer.com;Initial Catalog=dba1d03a2d9c0f4408a40ea6c90072de9e;User Id=tvmfwzevhnftvnla;Password=2Ccx6Hj4f3x55DK6Quii6SixnKvTrFciBYEozCMmQGhaFo3U5qeDwtdiuMkumxKF;";
+        private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
+        public List<EProducto> ObtenerProducto(string codigobarra, string nombre, string tipo)
         {
-
+            List<EProducto> productolista = new List<EProducto>();
             EProducto productoEncontrado = null;
-            string sql = "";
-            if (codigobarra.Length != 0 && nombre.Length != 0 && tipo.Length != 0)
-                 sql = "SELECT * FROM producto WHERE CodigoBarra = @cod and nombre = @nom and tipo = @tip";
-            else if (codigobarra.Length != 0 && nombre.Length != 0 && tipo.Length == 0)
-                sql = "SELECT * FROM producto WHERE CodigoBarra = @cod and nombre = @nom";
-            else if (codigobarra.Length != 0 && nombre.Length == 0 && tipo.Length == 0)
-                sql = "SELECT * FROM producto WHERE CodigoBarra = @cod";
-            else if (codigobarra.Length == 0 && nombre.Length != 0 && tipo.Length != 0)
-                sql = "SELECT * FROM producto WHERE nombre = @nom and tipo = @tip";
-            else if (codigobarra.Length == 0 && nombre.Length == 0 && tipo.Length != 0)
-                sql = "SELECT * FROM producto WHERE tipo = @tip";
-            else if (codigobarra.Length == 0 && nombre.Length != 0 && tipo.Length == 0)
-                sql = "SELECT * FROM producto WHERE nombre = @nom ";
 
-            using (SqlConnection con = new SqlConnection(cadenaconexion))
+            try
             {
-                con.Open();
-                using (SqlCommand com = new SqlCommand(sql, con))
+                string sql = "";
+                if (codigobarra.Length != 0 && nombre.Length != 0 && tipo.Length != 0)
+                    sql = "SELECT * FROM producto WHERE CodigoBarra = @cod and nombre = @nom and tipo = @tip";
+                else if (codigobarra.Length != 0 && nombre.Length != 0 && tipo.Length == 0)
+                    sql = "SELECT * FROM producto WHERE CodigoBarra = @cod and nombre = @nom";
+                else if (codigobarra.Length != 0 && nombre.Length == 0 && tipo.Length == 0)
+                    sql = "SELECT * FROM producto WHERE CodigoBarra = @cod";
+                else if (codigobarra.Length == 0 && nombre.Length != 0 && tipo.Length != 0)
+                    sql = "SELECT * FROM producto WHERE nombre = @nom and tipo = @tip";
+                else if (codigobarra.Length == 0 && nombre.Length == 0 && tipo.Length != 0)
+                    sql = "SELECT * FROM producto WHERE tipo = @tip";
+                else if (codigobarra.Length == 0 && nombre.Length != 0 && tipo.Length == 0)
+                    sql = "SELECT * FROM producto WHERE nombre = @nom ";
+
+                using (SqlConnection con = new SqlConnection(cadenaconexion))
                 {
-                    com.Parameters.Add(new SqlParameter("@cod", codigobarra));
-                    com.Parameters.Add(new SqlParameter("@nom", nombre));
-                    com.Parameters.Add(new SqlParameter("@tip", tipo));
-                    using (SqlDataReader resultado = com.ExecuteReader())
+                    con.Open();
+                    using (SqlCommand com = new SqlCommand(sql, con))
                     {
-                        if (resultado.Read())
+                        com.Parameters.Add(new SqlParameter("@cod", codigobarra));
+                        com.Parameters.Add(new SqlParameter("@nom", nombre));
+                        com.Parameters.Add(new SqlParameter("@tip", tipo));
+                        using (SqlDataReader resultado = com.ExecuteReader())
                         {
-                            productoEncontrado = new EProducto()
+                            while (resultado.Read())
                             {
-                                codigobarra = (string)resultado["CodigoBarra"],
-                                Nombre = (string)resultado["Nombre"],
-                                Stock = Int32.Parse(resultado["Stock"].ToString()),
-                                Precio = Double.Parse(resultado["Precio"].ToString()),
-                                Estado = (string)resultado["Estado"],
-                                Tipo = (string)resultado["Tipo"]
-                            };
+                                productoEncontrado = new EProducto()
+                                {
+                                    codigobarra = (string)resultado["CodigoBarra"],
+                                    Nombre = (string)resultado["Nombre"],
+                                    Stock = Int32.Parse(resultado["Stock"].ToString()),
+                                    Precio = Double.Parse(resultado["Precio"].ToString()),
+                                    Estado = (string)resultado["Estado"],
+                                    Tipo = (string)resultado["Tipo"]
+                                };
+                                productolista.Add(productoEncontrado);
+                            }
+                            resultado.Close();
                         }
                     }
                 }
             }
-            return productoEncontrado;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return productolista;
         }
         /*
         public EProducto CrearProducto(EProducto productoACrear)
@@ -101,29 +111,37 @@ namespace CFFLORES.WebService.Persistencia
         {
             List<EProducto> productoList = new List<EProducto>();
             EProducto productobe = null;
-            string sql = "SELECT * FROM producto";
-            using (SqlConnection con = new SqlConnection(cadenaconexion))
+            try
             {
-                con.Open();
-                using (SqlCommand com = new SqlCommand(sql, con))
+                string sql = "SELECT * FROM producto";
+                using (SqlConnection con = new SqlConnection(cadenaconexion))
                 {
-                    using (SqlDataReader resultado = com.ExecuteReader())
+                    con.Open();
+                    using (SqlCommand com = new SqlCommand(sql, con))
                     {
-                        while (resultado.Read())
+                        using (SqlDataReader resultado = com.ExecuteReader())
                         {
-                            productobe = new EProducto()
+                            while (resultado.Read())
                             {
-                                codigobarra = (string)resultado["CodigoBarra"].ToString(),
-                                Nombre = (string)resultado["Nombre"].ToString(),
-                                Stock = Int32.Parse(resultado["Stock"].ToString()),
-                                Precio = Double.Parse(resultado["Precio"].ToString()),
-                                Estado = (string)resultado["Estado"].ToString(),
-                                Tipo = (string)resultado["Tipo"]
-                            };
-                            productoList.Add(productobe);
+                                productobe = new EProducto()
+                                {
+                                    codigobarra = (string)resultado["CodigoBarra"].ToString(),
+                                    Nombre = (string)resultado["Nombre"].ToString(),
+                                    Stock = Int32.Parse(resultado["Stock"].ToString()),
+                                    Precio = Double.Parse(resultado["Precio"].ToString()),
+                                    Estado = (string)resultado["Estado"].ToString(),
+                                    Tipo = (string)resultado["Tipo"]
+                                };
+                                productoList.Add(productobe);
+                            }
                         }
                     }
+
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return productoList;
         }

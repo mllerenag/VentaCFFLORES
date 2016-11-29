@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Producto.cs" />
     <Compile Include="Service References\ProductoWSC\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

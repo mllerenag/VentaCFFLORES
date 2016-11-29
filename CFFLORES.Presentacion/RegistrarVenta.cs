@@ -51,7 +51,7 @@ namespace CFFLORES.Presentacion
             if (count == 0)
             {
                 MessageBox.Show("Debe seleccionar por lo menos una Venta",
-                "Adventencia",
+                "Advertencia",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
@@ -64,11 +64,29 @@ namespace CFFLORES.Presentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
+
+            MessageBox.Show("Usted se encuentra fuera del Horario de Venta. Consulte con su Administrador.",
+            "Advertencia",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information,
+            MessageBoxDefaultButton.Button1);
+
+            MessageBox.Show("Para realizar una Venta, primero debe Aperturar el Dia. Consulte con su Administrador.",
+            "Advertencia",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information,
+            MessageBoxDefaultButton.Button1);
+
+           
+
             MessageBox.Show("Se realizó la Venta.",
             "EXITO",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information,
             MessageBoxDefaultButton.Button1);
+
+
+
             tabControl1.SelectedIndex = 0;
             this.tabControl1.TabPages.Remove(this.tabPage2);
         }
@@ -115,7 +133,7 @@ namespace CFFLORES.Presentacion
             
 
             DialogResult result = MessageBox.Show("¿Está Seguro que desea Anular la Venta?",
-            "Atencion",
+            "Atención",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button2);
@@ -184,40 +202,6 @@ namespace CFFLORES.Presentacion
             }
         }
 
-        private void button10_Click(object sender, EventArgs e)
-        {
-
-            int count = 0;
-            for (int i = 0; i <= dgvVenta.RowCount - 1; i++)
-            {
-                if (Convert.ToBoolean(dgvVenta.Rows[i].Cells["Column1"].Value) == true)
-                {
-                    ++count;
-                }
-            }
-
-
-            if (count == 0)
-            {
-                MessageBox.Show("Debe seleccionar por lo menos una Venta",
-                "Adventencia",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
-                return;
-            }
-
-            DialogResult result = MessageBox.Show("¿Está Seguro que desea Imprimir la Venta?",
-            "Atencion",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button2);
-
-            if (result == System.Windows.Forms.DialogResult.Yes)
-            {
-                MessageBox.Show("Imprimiendo....");
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -238,6 +222,8 @@ namespace CFFLORES.Presentacion
                 this.tabControl1.TabPages.Remove(this.tabPage2);
             else
                 this.tabControl1.TabPages.Add(this.tabPage2);
+
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
 
             rbDni.Checked = true;
             rbVenta.Checked = false;
@@ -295,15 +281,6 @@ namespace CFFLORES.Presentacion
                 this.tabControl1.TabPages.Add(this.tabPage2);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -319,33 +296,12 @@ namespace CFFLORES.Presentacion
                 Listar("3", txtBusCliente.Text);
         }
 
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void groupBox5_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button12_Click(object sender, EventArgs e)
         {
 
         }
