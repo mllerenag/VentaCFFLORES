@@ -6,13 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CFFLORES.WebService.Persistencia;
+using System.ServiceModel;
 
 namespace CFFLORES.Presentacion
 {
     public partial class ConsultarProducto : Form
     {
-        private DAOProducto daoproducto = new DAOProducto();
+    
 
         public ConsultarProducto()
         {
@@ -27,40 +27,40 @@ namespace CFFLORES.Presentacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Para buscar por nombre o tipo, no se debe registrar código de barras.",
-                             "Error",
-             MessageBoxButtons.OK,
-             MessageBoxIcon.Error,
-             MessageBoxDefaultButton.Button1);
-            MessageBox.Show("El producto <Nombre producto> esta por agotarse.",
-             "Adventencia",
-             MessageBoxButtons.OK,
-             MessageBoxIcon.Exclamation,
-             MessageBoxDefaultButton.Button1);
+            ProductoWSC.ProductoClient proxy = new ProductoWSC.ProductoClient();
+            string codigobarra = txtCodigoBarra.Text;
+            string nombre = txtDescripcion.Text;
+            string tipo = (cboTipo.Text.Equals("Ninguno") )? "" : cboTipo.Text;
+            try
+            {
 
-            MessageBox.Show("El producto <Nombre producto> no cuenta con stock disponible.",
-             "Adventencia",
-             MessageBoxButtons.OK,
-             MessageBoxIcon.Exclamation,
-             MessageBoxDefaultButton.Button1);
+                ProductoWSC.EProducto[] ObProducto = proxy.ObtenerProducto(codigobarra, nombre, tipo);
+                dgvProducto.AutoGenerateColumns = false;
+                dgvProducto.DataSource = ObProducto;
 
-            MessageBox.Show("El producto no existe.",
-             "Adventencia",
-             MessageBoxButtons.OK,
-             MessageBoxIcon.Exclamation,
-             MessageBoxDefaultButton.Button1);
 
-            MessageBox.Show("El producto <Nombre producto> está deshabilitado.",
-             "Adventencia",
-             MessageBoxButtons.OK,
-             MessageBoxIcon.Exclamation,
-             MessageBoxDefaultButton.Button1);
+            }
+            catch (FaultException<ProductoWSC.ProductoInexistente> error)
+            {
+                /*Por error se valida los datos*/
+                if (error.Detail.exCodigo == 1)
+                    MessageBox.Show(error.Reason.ToString(),
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+                else
+                    MessageBox.Show(error.Reason.ToString(),
+                   "Adventencia",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Exclamation,
+                   MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void ConsultarProducto_Load(object sender, EventArgs e)
         {
-            dgvProducto.AutoGenerateColumns = false;
-            dgvProducto.DataSource = daoproducto.ListarProducto();
+            cboTipo.SelectedIndex = 0;
 
 
         }

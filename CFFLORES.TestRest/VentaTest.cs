@@ -20,7 +20,7 @@ namespace CFFLORES.TestRest
             try
             {
 
-                string URLAuth = "http://localhost:24832/Venta.svc/Venta/" + busqueda.ToString() + "/" + valor.ToString();
+                string URLAuth = "http://localhost:24832/Venta.svc/Ventas?Gbusqueda=" + busqueda.ToString() + "&Gvalor=" + valor.ToString();
 
                 HttpWebRequest req = (HttpWebRequest)WebRequest.
                     Create(URLAuth);
@@ -70,7 +70,7 @@ namespace CFFLORES.TestRest
             try
             {
                 byte[] data = Encoding.UTF8.GetBytes(postdata);
-                string URLAuth = "http://localhost:24832/Venta.svc/Venta";
+                string URLAuth = "http://localhost:24832/Venta.svc/Ventas";
 
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(URLAuth);
                 req.Method = "PUT";

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d4c6acdf-c6d8-478c-a57f-353d1bc7266f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24832/Producto.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Producto.xsd" MetadataType="Schema" ID="09025f91-4344-4a40-9d57-37cae40c4199" SourceId="1" SourceUrl="http://localhost:24832/Producto.svc?xsd=xsd1" />
+    <MetadataFile FileName="Producto1.xsd" MetadataType="Schema" ID="9718b4b4-970c-4dc6-8fa6-4fb2224c948e" SourceId="1" SourceUrl="http://localhost:24832/Producto.svc?xsd=xsd3" />
+    <MetadataFile FileName="Producto.wsdl" MetadataType="Wsdl" ID="0a7566d5-e35a-4854-a0c2-6fbedd1a3d39" SourceId="1" SourceUrl="http://localhost:24832/Producto.svc?wsdl" />
+    <MetadataFile FileName="Producto2.xsd" MetadataType="Schema" ID="a1622ce7-2322-4a20-92e3-35a7ac6b28c7" SourceId="1" SourceUrl="http://localhost:24832/Producto.svc?xsd=xsd0" />
+    <MetadataFile FileName="Producto3.xsd" MetadataType="Schema" ID="828fa413-2be7-4d46-9124-891a618dfe2f" SourceId="1" SourceUrl="http://localhost:24832/Producto.svc?xsd=xsd2" />
+    <MetadataFile FileName="Producto.disco" MetadataType="Disco" ID="34394f45-1b01-43a1-a4eb-69187ea59015" SourceId="1" SourceUrl="http://localhost:24832/Producto.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

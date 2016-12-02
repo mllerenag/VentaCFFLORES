@@ -15,11 +15,11 @@ namespace CFFLORES.WebService
     public interface IVenta
     {
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "Venta/{busqueda}/{Valor}", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", UriTemplate = "Ventas?Gbusqueda={busqueda}&Gvalor={Valor}", ResponseFormat = WebMessageFormat.Json)]
         List<EVenta> Listar(string busqueda, string Valor);
         
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "Venta", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "PUT", UriTemplate = "Ventas", ResponseFormat = WebMessageFormat.Json)]
         List<EVenta> Modificar(EVenta beventa);
         
        
