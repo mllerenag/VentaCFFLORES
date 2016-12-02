@@ -15,12 +15,24 @@ namespace CFFLORES.TestRest
         [TestMethod]
         public void TestListar()
         {
+
+            /*
+            busqueda:
+                1 - Listar
+                2 - Dni
+                20 -  Dni x fecha
+                3 - NroVenta
+                30 -  NroVenta x fecha
+                4 - IdVenta
+            */
+
             string busqueda = "2";
             string valor = "11111111";
+            string fecha = "20160709";
             try
             {
 
-                string URLAuth = "http://localhost:24832/Venta.svc/Ventas?Gbusqueda=" + busqueda.ToString() + "&Gvalor=" + valor.ToString();
+                string URLAuth = "http://localhost:24832/Venta.svc/Ventas?Gbusqueda=" + busqueda.ToString() + "&Gvalor=" + valor.ToString() + "&Gfecha=" + fecha.ToString();
 
                 HttpWebRequest req = (HttpWebRequest)WebRequest.
                     Create(URLAuth);
@@ -52,7 +64,7 @@ namespace CFFLORES.TestRest
                 if (busqueda.Equals("2"))
                     Assert.AreEqual("La Busqueda por DNI debe contener 8 Caracteres", mensaje);
                 else if (busqueda.Equals("3"))
-                    Assert.AreEqual("La Busqueda por Serie debe contener 3 Caracteres", mensaje);
+                    Assert.AreEqual("La Busqueda por Serie debe contener 5 Caracteres", mensaje);
                 else
                     Assert.AreEqual("No Existe Venta", mensaje);
 
@@ -61,10 +73,10 @@ namespace CFFLORES.TestRest
         [TestMethod]
         public void TestModificar()
         {
-            string idcliente = "1";
-            string estado = "2";//Cambiar Estado para validar--> 0: Venta, 1:Contabilizado; 2: Anulado, 3:SinVenta
+            string idcliente = "5";
+            string estado = "0";// 0: Para Anular, 1 o otro:Mantiene estado
 
-            string postdata = "{\"IdVenta\":\"" + idcliente + "\"}";
+            string postdata = "{\"IdVenta\":\"" + idcliente + "\",\"Estado\":\"" + estado + "\"}";
             //string postdata = "{\"IdVenta\":\"1\",\"Estado\":\"true\"}";
 
             try

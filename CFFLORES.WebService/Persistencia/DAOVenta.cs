@@ -12,19 +12,23 @@ namespace CFFLORES.WebService.Persistencia
         //private string cadenaconexion = "Data Source=a1d03a2d-9c0f-4408-a40e-a6c90072de9e.sqlserver.sequelizer.com;Initial Catalog=dba1d03a2d9c0f4408a40ea6c90072de9e;User Id=tvmfwzevhnftvnla;Password=2Ccx6Hj4f3x55DK6Quii6SixnKvTrFciBYEozCMmQGhaFo3U5qeDwtdiuMkumxKF;";
         private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
 
-        public List<EVenta> Listar(string busqueda, string Valor)
+        public List<EVenta> Listar(string busqueda, string Valor, string fecha)
         {
             List<EVenta> lista = new List<EVenta>();
 
             string sql = "";
             if (busqueda.Equals("1")) //Listar
-                sql = "SELECT * FROM venta";
+                sql = "SELECT * FROM venta where convert(nvarchar(8), fecha, 112) = " + fecha;
             else if (busqueda.Equals("2")) //Por Dni
-                sql = "SELECT * FROM venta where dni ="+ Valor;
-            else if (busqueda.Equals("3")) //Por Serie
-                sql = "SELECT * FROM venta where Serie =" + Valor;
+                sql = "SELECT * FROM venta where dni = "+ Valor;
+            else if (busqueda.Equals("20")) //Por Dni y fecha
+                sql = "SELECT * FROM venta where convert(nvarchar(8), fecha, 112) = " + fecha + " and dni = " + Valor;
+            else if (busqueda.Equals("3")) //Por NroVenta
+                sql = "SELECT * FROM venta where  NroDoc = " + Valor;
+            else if (busqueda.Equals("30")) //Por NroVenta y fecha
+                sql = "SELECT * FROM venta where convert(nvarchar(8), fecha, 112) = " + fecha + " and NroDoc = " + Valor;
             else if (busqueda.Equals("4")) //Por idVenta
-                sql = "SELECT * FROM venta where IdVenta =" + Valor;
+                sql = "SELECT * FROM venta where  IdVenta = " + Valor;
 
             try
             {
@@ -89,7 +93,7 @@ namespace CFFLORES.WebService.Persistencia
                         com.ExecuteNonQuery();
                     }
                 }
-                resultado = Listar("4", venta.IdVenta.ToString());
+                resultado = Listar("4", venta.IdVenta.ToString(),venta.Fecha.ToString("yyyyMMdd"));
                 return resultado;
             }
             catch (Exception ex)

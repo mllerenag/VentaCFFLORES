@@ -150,6 +150,7 @@ namespace CFFLORES.Presentacion
 
                     }
                 }
+                Buscar();
             }
         }
 
@@ -158,14 +159,12 @@ namespace CFFLORES.Presentacion
             string id = idcliente;
             string st = estado;
             string postdata = "{\"IdVenta\":\"" + id + "\",\"Estado\":\"" + st + "\"}";
-            byte[] data = Encoding.UTF8.GetBytes(postdata);
-            string URLAuth = "http://localhost:24832/Venta.svc/Ventas";
 
             try
             {
-                
 
-
+                byte[] data = Encoding.UTF8.GetBytes(postdata);
+                string URLAuth = "http://localhost:24832/Venta.svc/Ventas";
 
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(URLAuth);
                 req.Method = "PUT";
@@ -179,8 +178,19 @@ namespace CFFLORES.Presentacion
                 JavaScriptSerializer JsonConvert = new JavaScriptSerializer();
                 List<Venta> registros = new List<Venta>();
                 registros = JsonConvert.Deserialize<List<Venta>>(clienteJson);
-                dgvVenta.AutoGenerateColumns = false;
-                dgvVenta.DataSource = registros;
+                //dgvVenta.AutoGenerateColumns = false;
+                //dgvVenta.DataSource = registros;
+
+                foreach (var value in registros)
+                {
+                    MessageBox.Show("Se anulo la Venta N°: " + value.NroDoc.ToString(),
+                     "Exito",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information,
+                     MessageBoxDefaultButton.Button1);
+                }
+
+
 
 
             }
@@ -217,28 +227,37 @@ namespace CFFLORES.Presentacion
 
         private void RegistrarVenta_Load(object sender, EventArgs e)
         {
+            if (chkFecha.Checked == true)
+                dateTimePicker1.Enabled = true;
+            else
+            {
+                dateTimePicker1.Enabled = false;
+                dateTimePicker1.Value = DateTime.Now;
+            }
 
             if (this.tabControl1.TabPages.Contains(this.tabPage2))
                 this.tabControl1.TabPages.Remove(this.tabPage2);
             else
                 this.tabControl1.TabPages.Add(this.tabPage2);
 
+
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
 
             rbDni.Checked = true;
             rbVenta.Checked = false;
-            Listar("1","1");
+            Listar("1","1", dateTimePicker1.Value.ToString("yyyyMMdd"));
 
         }
 
    
-        public void Listar( string busqueda, string valor)
+        public void Listar( string busqueda, string valor, string fecha)
         {
             try
             {
                 dgvVenta.AutoGenerateColumns = false;
                 //dgvVenta.DataSource = daoproducto.ListarProducto();
-                string URLAuth = "http://localhost:24832/Venta.svc/Ventas?Gbusqueda=" + busqueda.ToString() + "&Gvalor=" + valor.ToString();
+                string URLAuth = "http://localhost:24832/Venta.svc/Ventas?Gbusqueda=" + busqueda.ToString() + "&Gvalor=" + valor.ToString() + "&Gfecha=" + fecha.ToString();
+
                 HttpWebRequest req = (HttpWebRequest)WebRequest.
                     Create(URLAuth);
                 req.Method = "GET";
@@ -283,16 +302,24 @@ namespace CFFLORES.Presentacion
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Buscar();
+        }
+
+        private void Buscar()
+        {
             if (txtBusCliente.Text.Trim().Length == 0)
             {
-                Listar("1", "1");
+                Listar("1", "1", dateTimePicker1.Value.ToString("yyyyMMdd"));
                 return;
             }
-            if (rbDni.Checked)
-                Listar("2",txtBusCliente.Text);
-
-            if (rbVenta.Checked)
-                Listar("3", txtBusCliente.Text);
+            if (rbDni.Checked && chkFecha.Checked == true)
+                Listar("20", txtBusCliente.Text, dateTimePicker1.Value.ToString("yyyyMMdd"));
+            else if (rbDni.Checked && chkFecha.Checked == false)
+                Listar("2", txtBusCliente.Text, dateTimePicker1.Value.ToString("yyyyMMdd"));
+            else if (rbVenta.Checked && chkFecha.Checked == true)
+                Listar("30", txtBusCliente.Text, dateTimePicker1.Value.ToString("yyyyMMdd"));
+            else if (rbVenta.Checked && chkFecha.Checked == false)
+                Listar("3", txtBusCliente.Text, dateTimePicker1.Value.ToString("yyyyMMdd"));
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -303,6 +330,17 @@ namespace CFFLORES.Presentacion
         private void groupBox3_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkFecha_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkFecha.Checked == true)
+                dateTimePicker1.Enabled = true;
+            else
+            {
+                dateTimePicker1.Enabled = false;
+                dateTimePicker1.Value = DateTime.Now;
+            }
         }
     }
 }

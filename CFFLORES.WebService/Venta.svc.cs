@@ -16,7 +16,7 @@ namespace CFFLORES.WebService
     public class Venta : IVenta
     {
         private DAOVenta dao = new DAOVenta();
-        public List<EVenta> Listar(string busqueda, string Valor)
+        public List<EVenta> Listar(string busqueda, string Valor, string fecha)
         {
             /*
              busqueda:
@@ -33,15 +33,15 @@ namespace CFFLORES.WebService
                 throw new WebFaultException<string>("La Busqueda por DNI debe contener 8 Caracteres", HttpStatusCode.InternalServerError);
             }
 
-            if (busqueda.Equals("3") && Valor.Length != 3)//Busqueda por Serie
+            if (busqueda.Equals("3") && Valor.Length != 5)//Busqueda por NroVenta
             {
-                throw new WebFaultException<string>("La Busqueda por Serie debe contener 3 Caracteres", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("La Busqueda por Serie debe contener 5 Caracteres", HttpStatusCode.InternalServerError);
             }
 
             List<EVenta> obobVenta = new List<EVenta>();
-            obobVenta = dao.Listar(busqueda, Valor);
+            obobVenta = dao.Listar(busqueda, Valor,fecha);
 
-            if (obobVenta.Capacity == 0)
+            if (obobVenta.Count == 0)
             {
                 throw new WebFaultException<string>("No Existe Venta", HttpStatusCode.InternalServerError);
 
@@ -70,7 +70,7 @@ namespace CFFLORES.WebService
 
             List<EVenta> obobVenta = new List<EVenta>();
 
-            obobVenta = dao.Listar("4", beventa.IdVenta.ToString());
+            obobVenta = dao.Listar("4", beventa.IdVenta.ToString(), beventa.Fecha.ToString("yyyyMMdd"));
 
             if (obobVenta.Capacity == 0)
             {
