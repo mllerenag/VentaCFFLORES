@@ -81,7 +81,7 @@ namespace CFFLORES.WebService
             string estado = obobVenta[0].Estado.ToString();
             if (estado.Equals("1"))
             {
-                throw new WebFaultException<string>("No se puede Anular una Venta que se encuentra contabilizada", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("No se puede Anular una Venta con estado Contabilizado", HttpStatusCode.InternalServerError);
 
             }
             if (estado.Equals("2"))
