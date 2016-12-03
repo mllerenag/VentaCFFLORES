@@ -63,9 +63,9 @@ namespace CFFLORES.WebService
                         {
                             exCodigo = 13,
                             exProducto = ObProducto[0].Nombre.ToString(),
-                            exError = "El producto " + ObProducto[0].Nombre + " se encuentra Deshabilitado"
+                            exError = "El producto " + ObProducto[0].Nombre + " se encuentra deshabilitado"
                         }
-                    , new FaultReason("El producto " + ObProducto[0].Nombre + " se encuentra Deshabilitado"));
+                    , new FaultReason("El producto " + ObProducto[0].Nombre + " se encuentra deshabilitado"));
 
                 }
                 /*Se valida que exista Stock*/
