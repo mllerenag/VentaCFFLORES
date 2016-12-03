@@ -62,11 +62,11 @@ namespace CFFLORES.TestRest
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string mensaje = js.Deserialize<string>(error);
                 if (busqueda.Equals("2"))
-                    Assert.AreEqual("La Busqueda por DNI debe contener 8 Caracteres", mensaje);
+                    Assert.AreEqual("La Búsqueda por DNI debe contener 8 Caracteres", mensaje);
                 else if (busqueda.Equals("3"))
-                    Assert.AreEqual("La Busqueda por Serie debe contener 5 Caracteres", mensaje);
+                    Assert.AreEqual("La Búsqueda por Serie debe contener 5 Caracteres", mensaje);
                 else
-                    Assert.AreEqual("No Existe Venta", mensaje);
+                    Assert.AreEqual("No Existe la Venta según los parámetros ingresados", mensaje);
 
             }
         }
@@ -112,11 +112,11 @@ namespace CFFLORES.TestRest
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string mensaje = js.Deserialize<string>(error);
                 if (estado.Equals("1"))
-                    Assert.AreEqual("No se puede Anular la Venta, ya se encuentra contabilizado", mensaje);
+                    Assert.AreEqual("No se puede Anular una Venta que se encuentra contabilizada", mensaje);
                 else if (estado.Equals("2"))
                     Assert.AreEqual("La venta ya se encuentra Anulada", mensaje);
                 else if (estado.Equals("3"))
-                    Assert.AreEqual("No Existe Venta", mensaje);
+                    Assert.AreEqual("No Existe la Venta según los parámetros ingresados", mensaje);
 
             }
 

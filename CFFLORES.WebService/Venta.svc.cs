@@ -30,12 +30,12 @@ namespace CFFLORES.WebService
 
             if (busqueda.Equals("2") &&  Valor.Length != 8)//Busqueda por DNI
             {
-                throw new WebFaultException<string>("La Busqueda por DNI debe contener 8 Caracteres", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("La Búsqueda por DNI debe contener 8 Caracteres", HttpStatusCode.InternalServerError);
             }
 
             if (busqueda.Equals("3") && Valor.Length != 5)//Busqueda por NroVenta
             {
-                throw new WebFaultException<string>("La Busqueda por Serie debe contener 5 Caracteres", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("La Búsqueda por Serie debe contener 5 Caracteres", HttpStatusCode.InternalServerError);
             }
 
             List<EVenta> obobVenta = new List<EVenta>();
@@ -43,7 +43,7 @@ namespace CFFLORES.WebService
 
             if (obobVenta.Count == 0)
             {
-                throw new WebFaultException<string>("No Existe Venta", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("No Existe la Venta según los parámetros ingresados", HttpStatusCode.InternalServerError);
 
             }
 
@@ -74,14 +74,14 @@ namespace CFFLORES.WebService
 
             if (obobVenta.Capacity == 0)
             {
-                throw new WebFaultException<string>("No Existe Venta", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("No Existe la Venta según los parámetros ingresados", HttpStatusCode.InternalServerError);
 
             }
 
             string estado = obobVenta[0].Estado.ToString();
             if (estado.Equals("1"))
             {
-                throw new WebFaultException<string>("No se puede Anular la Venta, ya se encuentra contabilizado", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("No se puede Anular una Venta que se encuentra contabilizada", HttpStatusCode.InternalServerError);
 
             }
             if (estado.Equals("2"))

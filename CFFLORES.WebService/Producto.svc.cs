@@ -30,9 +30,9 @@ namespace CFFLORES.WebService
                     new ProductoInexistente()
                     {
                         exCodigo = 1,
-                        exError = "Para buscar por Nombre o Tipo, no se debe registrar código de Barras"
+                        exError = "Para buscar un producto por Nombre o Tipo, no se debe registrar código de Barras"
                     }
-                , new FaultReason("Para Buscar por Nombre o Tipo, no se debe registrar código de Barras"));
+                , new FaultReason("Para Buscar un producto por Nombre o Tipo, no se debe registrar código de Barras"));
 
             }
 
@@ -45,9 +45,9 @@ namespace CFFLORES.WebService
                     new ProductoInexistente()
                     {
                         exCodigo = 10,
-                        exError = "El producto No existe"
+                        exError = "El producto buscado No existe"
                     }
-                , new FaultReason("El producto No existe"));
+                , new FaultReason("El producto buscado No existe"));
 
             }
 
@@ -63,9 +63,9 @@ namespace CFFLORES.WebService
                         {
                             exCodigo = 13,
                             exProducto = ObProducto[0].Nombre.ToString(),
-                            exError = "El producto " + ObProducto[0].Nombre + " está Deshabilitado"
+                            exError = "El producto " + ObProducto[0].Nombre + " se encuentra Deshabilitado"
                         }
-                    , new FaultReason("El producto " + ObProducto[0].Nombre + " está Deshabilitado"));
+                    , new FaultReason("El producto " + ObProducto[0].Nombre + " se encuentra Deshabilitado"));
 
                 }
                 /*Se valida que exista Stock*/
@@ -76,9 +76,9 @@ namespace CFFLORES.WebService
                         {
                             exCodigo = 11,
                             exProducto = ObProducto[0].Nombre.ToString(),
-                            exError = "El producto " + ObProducto[0].Nombre + " no cuenta con Stock disponible"
+                            exError = "El producto " + ObProducto[0].Nombre + " no cuenta con Stock disponible en este momento"
                         }
-                    , new FaultReason("El producto " + ObProducto[0].Nombre + " no cuenta con Stock disponible"));
+                    , new FaultReason("El producto " + ObProducto[0].Nombre + " no cuenta con Stock disponible en este momento"));
 
                 }
                 /*Se valida que  se va agotar Stock*/
@@ -89,9 +89,9 @@ namespace CFFLORES.WebService
                         {
                             exCodigo = 12,
                             exProducto = ObProducto[0].Nombre.ToString(),
-                            exError = "El producto " + ObProducto[0].Nombre + " está por agotarse"
+                            exError = "El stock del producto " + ObProducto[0].Nombre + " está por agotarse"
                         }
-                    , new FaultReason("El producto " + ObProducto[0].Nombre + " está por agotarse"));
+                    , new FaultReason("El stock del producto " + ObProducto[0].Nombre + " está por agotarse"));
 
                 }
             }
