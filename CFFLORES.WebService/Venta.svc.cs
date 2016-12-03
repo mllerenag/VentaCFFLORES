@@ -86,15 +86,14 @@ namespace CFFLORES.WebService
             }
             if (estado.Equals("2"))
             {
-                throw new WebFaultException<string>("La venta ya se encuentra Anulada", HttpStatusCode.InternalServerError);
+                throw new WebFaultException<string>("No se puede anular una venta ya anulada", HttpStatusCode.InternalServerError);
 
             }
 
             List<EVenta> obobVentaresult = new List<EVenta>();
             obobVentaresult = dao.Modificar(beventa);
 
-
-
+            
             return obobVentaresult;
         }
         

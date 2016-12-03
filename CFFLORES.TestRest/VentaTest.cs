@@ -114,7 +114,7 @@ namespace CFFLORES.TestRest
                 if (estado.Equals("1"))
                     Assert.AreEqual("No se puede Anular una Venta con estado Contabilizada", mensaje);
                 else if (estado.Equals("2"))
-                    Assert.AreEqual("La venta ya se encuentra Anulada", mensaje);
+                    Assert.AreEqual("No se puede anular una venta ya anulada", mensaje);
                 else if (estado.Equals("3"))
                     Assert.AreEqual("No Existe la Venta según los parámetros ingresados", mensaje);
 
