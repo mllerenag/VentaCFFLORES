@@ -172,7 +172,7 @@ namespace CFFLORES.TestRest
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string mensaje = js.Deserialize<string>(error);
 
-                    Assert.AreEqual("No se puede Anular una Venta con estado Contabilizada", mensaje);
+                    Assert.AreEqual("No se puede Anular una Venta con estado Contabilizado", mensaje);
 
 
             }
