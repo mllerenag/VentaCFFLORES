@@ -56,7 +56,7 @@ namespace CFFLORES.Presentacion
                     MessageBoxDefaultButton.Button1);
                 else
                     MessageBox.Show(error.Reason.ToString(),
-                   "Adventencia",
+                   "Advertencia",
                    MessageBoxButtons.OK,
                    MessageBoxIcon.Exclamation,
                    MessageBoxDefaultButton.Button1);
