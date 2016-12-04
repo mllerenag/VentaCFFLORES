@@ -114,6 +114,7 @@
             this.dgvProducto.Size = new System.Drawing.Size(647, 375);
             this.dgvProducto.TabIndex = 10;
             this.dgvProducto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dgvProducto.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProducto_CellMouseDoubleClick);
             // 
             // CodigoBarra
             // 

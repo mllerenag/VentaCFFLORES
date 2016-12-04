@@ -25,6 +25,7 @@ namespace CFFLORES.Presentacion
         {
             ConsultarProducto frmProducto = new ConsultarProducto();
             frmProducto.ShowDialog();
+            //frmProducto.idProducto
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -324,22 +325,31 @@ namespace CFFLORES.Presentacion
 
         private void AnularVentas()
         {
-            string rutacola = @".\private$\cfflores";
-            if (!MessageQueue.Exists(rutacola))
+            try
             {
-                MessageQueue.Create(rutacola);
+                string rutacola = @".\private$\cfflores";
+                if (!MessageQueue.Exists(rutacola))
+                {
+                    MessageQueue.Create(rutacola);
+                }
+                MessageQueue cola = new MessageQueue(rutacola);
+                cola.Formatter = new XmlMessageFormatter(new Type[] { typeof(Venta) });
+
+                System.Messaging.Message mensaje = cola.Receive(TimeSpan.FromSeconds(0.1),
+    MessageQueueTransactionType.Single);
+
+                if (mensaje != null)
+                {
+                    Venta nota = (Venta)mensaje.Body;
+                    Modificar(nota.IdVenta.ToString(), nota.Estado.ToString());
+
+                }
             }
-            MessageQueue cola = new MessageQueue(rutacola);
-            cola.Formatter = new XmlMessageFormatter(new Type[] { typeof(Venta) });
-
-            System.Messaging.Message mensaje = cola.Receive();
-
-            if (mensaje != null)
+            catch (MessageQueueException eReceive)
             {
-                Venta nota = (Venta)mensaje.Body;
-                Modificar(nota.IdVenta.ToString(), nota.Estado.ToString());
-
+                MessageBox.Show("No existen Ventas Pendientes por Anular");
             }
+
 
         }
 

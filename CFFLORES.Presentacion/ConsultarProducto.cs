@@ -12,8 +12,9 @@ namespace CFFLORES.Presentacion
 {
     public partial class ConsultarProducto : Form
     {
-    
 
+        public int idProducto;
+        public string desProducto;
         public ConsultarProducto()
         {
             InitializeComponent();
@@ -65,5 +66,10 @@ namespace CFFLORES.Presentacion
 
         }
 
+        private void dgvProducto_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string idproducto = dgvProducto[e.ColumnIndex, e.RowIndex].Value.ToString();
+            MessageBox.Show(idproducto);
+        }
     }
 }
