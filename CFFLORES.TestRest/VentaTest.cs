@@ -27,8 +27,8 @@ namespace CFFLORES.TestRest
             */
 
             string busqueda = "2";
-            string valor = "11111111";
-            string fecha = "20160709";
+            string valor = "25260";
+            string fecha = "20161203";
             try
             {
 
@@ -67,17 +67,21 @@ namespace CFFLORES.TestRest
                     Assert.AreEqual("La Búsqueda por Serie debe contener 5 Caracteres", mensaje);
                 else
                     Assert.AreEqual("No Existe la Venta según los parámetros ingresados", mensaje);
-
             }
         }
         [TestMethod]
         public void TestModificar()
         {
-            string idcliente = "5";
-            string estado = "0";// 0: Para Anular, 1 o otro:Mantiene estado
+            /*
+             Estados:
+             0: Venta
+             1: Contabilizado
+             2: Anulado
+             */
+            string idcliente = "6";
+            string estado = "2";// 0: Venta; 2:Anular
 
             string postdata = "{\"IdVenta\":\"" + idcliente + "\",\"Estado\":\"" + estado + "\"}";
-            //string postdata = "{\"IdVenta\":\"1\",\"Estado\":\"true\"}";
 
             try
             {

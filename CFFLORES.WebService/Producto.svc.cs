@@ -52,7 +52,7 @@ namespace CFFLORES.WebService
             List<EProducto> ObProducto = new List<EProducto>();
             ObProducto = daoproducto.ObtenerProducto(codigobarra,nombre,tipo);
             /*Se valida que exista Producto*/
-            if (ObProducto.Count == 0)
+            if (ObProducto.Count() == 0)
             {
                 throw new FaultException<ProductoInexistente>(
                     new ProductoInexistente()
@@ -64,7 +64,7 @@ namespace CFFLORES.WebService
 
             }
 
-            if (ObProducto.Capacity == 1)
+            if (ObProducto.Count() == 1)
             {
                 /*Se valida que el producto este habilitado*/
                 //0 : Habilitado
@@ -82,7 +82,7 @@ namespace CFFLORES.WebService
 
                 }
                 /*Se valida que exista Stock*/
-                if (ObProducto[0].Stock == 0)
+                if (ObProducto[0].Stock <= 0)
                 {
                     throw new FaultException<ProductoInexistente>(
                         new ProductoInexistente()

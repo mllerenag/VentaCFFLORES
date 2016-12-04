@@ -71,6 +71,11 @@ namespace CFFLORES.Presentacion
             insertardetalle(idventa);
             Listar("1", "1", dateTimePicker1.Value.ToString("yyyyMMdd"));
 
+            MessageBox.Show("Se realizo la venta",
+            "Exito",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information,
+            MessageBoxDefaultButton.Button1);
 
             tabControl1.SelectedIndex = 0;
             this.tabControl1.TabPages.Remove(this.tabPage2);
@@ -201,7 +206,7 @@ namespace CFFLORES.Presentacion
                         try
                         {
                             string id = dgvVenta.Rows[i].Cells["IdVenta"].Value.ToString();
-                            Modificar(id, "0");
+                            Modificar(id, "2");
 
                         }catch(WebException ex)
                         {

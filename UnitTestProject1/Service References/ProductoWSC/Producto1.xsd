@@ -9,6 +9,7 @@
   <xs:complexType name="EProducto">
     <xs:sequence>
       <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Precio" type="xs:double" />
       <xs:element minOccurs="0" name="Stock" type="xs:int" />

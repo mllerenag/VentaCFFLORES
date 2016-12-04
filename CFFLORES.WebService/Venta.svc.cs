@@ -72,7 +72,7 @@ namespace CFFLORES.WebService
 
             obobVenta = dao.Listar("4", beventa.IdVenta.ToString(), beventa.Fecha.ToString("yyyyMMdd"));
 
-            if (obobVenta.Capacity == 0)
+            if (obobVenta.Count() == 0)
             {
                 throw new WebFaultException<string>("No Existe la Venta según los parámetros ingresados", HttpStatusCode.InternalServerError);
 
