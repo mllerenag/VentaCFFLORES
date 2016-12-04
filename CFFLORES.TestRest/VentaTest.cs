@@ -121,5 +121,61 @@ namespace CFFLORES.TestRest
             }
 
         }
+        [TestMethod]
+        public void TestInsertar()
+        {
+            string strdni = "99999999";
+            string strtipdoc = "FACTURA";
+            string strnrodoc = "25259";
+            string strserie = "003";
+            double doumonto = Convert.ToDouble("150.50");
+            string strcliente = "Manuel";
+            string strformapago = "EFECTIVO";
+
+            string postdata = "{\"Dni\":\"" + strdni +
+                "\",\"TipoDoc\":\"" + strtipdoc +
+                "\",\"NroDoc\":\"" + strnrodoc +
+                "\",\"Serie\":\"" + strserie +
+                "\",\"Monto\":\"" + doumonto +
+                "\",\"Estado\":\"" + 0 +
+                "\",\"Cliente\":\"" + strcliente +
+                "\",\"FormaPago\":\"" + strformapago + "\"}";
+
+            
+            try
+            {
+                byte[] data = Encoding.UTF8.GetBytes(postdata);
+                string URLAuth = "http://localhost:24832/Venta.svc/Ventas";
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(URLAuth);
+                req.Method = "POST";
+                req.ContentLength = data.Length;
+                req.ContentType = "application/json";
+                var reqStream = req.GetRequestStream();
+                reqStream.Write(data, 0, data.Length);
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string clienteJson = reader.ReadToEnd();
+                JavaScriptSerializer JsonConvert = new JavaScriptSerializer();
+                int registros;
+                registros = JsonConvert.Deserialize<int>(clienteJson);
+
+
+
+            }
+            catch (WebException ex)
+            {
+                HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
+                string message = ((HttpWebResponse)ex.Response).StatusDescription;
+                StreamReader reader = new StreamReader(ex.Response.GetResponseStream());
+                string error = reader.ReadToEnd();
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string mensaje = js.Deserialize<string>(error);
+
+                    Assert.AreEqual("No se puede Anular una Venta con estado Contabilizada", mensaje);
+
+
+            }
+        }
     }
 }

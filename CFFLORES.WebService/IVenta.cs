@@ -21,8 +21,10 @@ namespace CFFLORES.WebService
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "Ventas", ResponseFormat = WebMessageFormat.Json)]
         List<EVenta> Modificar(EVenta beventa);
-        
-       
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "Ventas", ResponseFormat = WebMessageFormat.Json)]
+        int Insertar(EVenta beventa);
 
     }
 }

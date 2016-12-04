@@ -27,5 +27,8 @@ namespace CFFLORES.WebService.Dominio
         public decimal Monto { get; set; }
         [DataMember]
         public int Estado { get; set; }
+        [DataMember]
+        public string FormaPago { get; set; }
+
     }
 }

@@ -32,9 +32,21 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvVenta = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FormaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkFecha = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.rbVenta = new System.Windows.Forms.RadioButton();
@@ -64,8 +76,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtMontoPagar = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.cboFormaPago = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.ctpFechaEmision = new System.Windows.Forms.DateTimePicker();
@@ -79,17 +89,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.chkFecha = new System.Windows.Forms.CheckBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NroDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -154,13 +153,86 @@
             this.Cliente,
             this.Fecha,
             this.Monto,
-            this.Estado});
+            this.Estado,
+            this.FormaPago});
             this.dgvVenta.Location = new System.Drawing.Point(8, 23);
             this.dgvVenta.Margin = new System.Windows.Forms.Padding(4);
             this.dgvVenta.Name = "dgvVenta";
             this.dgvVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVenta.Size = new System.Drawing.Size(868, 294);
             this.dgvVenta.TabIndex = 24;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 40;
+            // 
+            // IdVenta
+            // 
+            this.IdVenta.DataPropertyName = "IdVenta";
+            this.IdVenta.HeaderText = "IdVenta";
+            this.IdVenta.Name = "IdVenta";
+            this.IdVenta.Visible = false;
+            // 
+            // TipoDoc
+            // 
+            this.TipoDoc.DataPropertyName = "TipoDoc";
+            this.TipoDoc.HeaderText = "Tip.Doc";
+            this.TipoDoc.Name = "TipoDoc";
+            this.TipoDoc.Width = 81;
+            // 
+            // Serie
+            // 
+            this.Serie.DataPropertyName = "Serie";
+            this.Serie.HeaderText = "Serie";
+            this.Serie.Name = "Serie";
+            this.Serie.Width = 81;
+            // 
+            // NroDoc
+            // 
+            this.NroDoc.DataPropertyName = "NroDoc";
+            this.NroDoc.HeaderText = "N° Venta";
+            this.NroDoc.Name = "NroDoc";
+            this.NroDoc.Width = 82;
+            // 
+            // Dni
+            // 
+            this.Dni.DataPropertyName = "Dni";
+            this.Dni.HeaderText = "Dni";
+            this.Dni.Name = "Dni";
+            // 
+            // Cliente
+            // 
+            this.Cliente.DataPropertyName = "Cliente";
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.Name = "Cliente";
+            // 
+            // Fecha
+            // 
+            this.Fecha.DataPropertyName = "Fecha";
+            this.Fecha.HeaderText = "Fecha Venta";
+            this.Fecha.Name = "Fecha";
+            // 
+            // Monto
+            // 
+            this.Monto.DataPropertyName = "Monto";
+            this.Monto.HeaderText = "Total Pagado";
+            this.Monto.Name = "Monto";
+            this.Monto.Width = 81;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.Width = 81;
+            // 
+            // FormaPago
+            // 
+            this.FormaPago.DataPropertyName = "FormaPago";
+            this.FormaPago.HeaderText = "FormaPago";
+            this.FormaPago.Name = "FormaPago";
             // 
             // button7
             // 
@@ -204,6 +276,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de Busqueda";
             // 
+            // chkFecha
+            // 
+            this.chkFecha.AutoSize = true;
+            this.chkFecha.Checked = true;
+            this.chkFecha.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFecha.Location = new System.Drawing.Point(495, 39);
+            this.chkFecha.Name = "chkFecha";
+            this.chkFecha.Size = new System.Drawing.Size(18, 17);
+            this.chkFecha.TabIndex = 10;
+            this.chkFecha.UseVisualStyleBackColor = true;
+            this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(376, 40);
@@ -223,7 +307,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(130, 22);
             this.dateTimePicker1.TabIndex = 8;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // rbVenta
             // 
@@ -477,8 +560,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.txtMontoPagar);
-            this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.cboFormaPago);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.ctpFechaEmision);
@@ -500,26 +581,6 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos de Venta";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // txtMontoPagar
-            // 
-            this.txtMontoPagar.Enabled = false;
-            this.txtMontoPagar.Location = new System.Drawing.Point(723, 64);
-            this.txtMontoPagar.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMontoPagar.Name = "txtMontoPagar";
-            this.txtMontoPagar.Size = new System.Drawing.Size(101, 22);
-            this.txtMontoPagar.TabIndex = 14;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(609, 67);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(109, 17);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "Forma de Pago:";
             // 
             // cboFormaPago
             // 
@@ -604,6 +665,7 @@
             // 
             // cboTipoDocumento
             // 
+            this.cboTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoDocumento.FormattingEnabled = true;
             this.cboTipoDocumento.Items.AddRange(new object[] {
             "BOLETA",
@@ -613,6 +675,7 @@
             this.cboTipoDocumento.Name = "cboTipoDocumento";
             this.cboTipoDocumento.Size = new System.Drawing.Size(131, 24);
             this.cboTipoDocumento.TabIndex = 4;
+            this.cboTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.cboTipoDocumento_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -653,84 +716,6 @@
             this.label3.Size = new System.Drawing.Size(55, 17);
             this.label3.TabIndex = 0;
             this.label3.Text = "Cliente:";
-            // 
-            // chkFecha
-            // 
-            this.chkFecha.AutoSize = true;
-            this.chkFecha.Checked = true;
-            this.chkFecha.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFecha.Location = new System.Drawing.Point(495, 39);
-            this.chkFecha.Name = "chkFecha";
-            this.chkFecha.Size = new System.Drawing.Size(18, 17);
-            this.chkFecha.TabIndex = 10;
-            this.chkFecha.UseVisualStyleBackColor = true;
-            this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 40;
-            // 
-            // IdVenta
-            // 
-            this.IdVenta.DataPropertyName = "IdVenta";
-            this.IdVenta.HeaderText = "IdVenta";
-            this.IdVenta.Name = "IdVenta";
-            this.IdVenta.Visible = false;
-            // 
-            // TipoDoc
-            // 
-            this.TipoDoc.DataPropertyName = "TipoDoc";
-            this.TipoDoc.HeaderText = "Tip.Doc";
-            this.TipoDoc.Name = "TipoDoc";
-            this.TipoDoc.Width = 81;
-            // 
-            // Serie
-            // 
-            this.Serie.DataPropertyName = "Serie";
-            this.Serie.HeaderText = "Serie";
-            this.Serie.Name = "Serie";
-            this.Serie.Width = 81;
-            // 
-            // NroDoc
-            // 
-            this.NroDoc.DataPropertyName = "NroDoc";
-            this.NroDoc.HeaderText = "N° Venta";
-            this.NroDoc.Name = "NroDoc";
-            this.NroDoc.Width = 82;
-            // 
-            // Dni
-            // 
-            this.Dni.DataPropertyName = "Dni";
-            this.Dni.HeaderText = "Dni";
-            this.Dni.Name = "Dni";
-            // 
-            // Cliente
-            // 
-            this.Cliente.DataPropertyName = "Cliente";
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.Name = "Cliente";
-            // 
-            // Fecha
-            // 
-            this.Fecha.DataPropertyName = "Fecha";
-            this.Fecha.HeaderText = "Fecha Venta";
-            this.Fecha.Name = "Fecha";
-            // 
-            // Monto
-            // 
-            this.Monto.DataPropertyName = "Monto";
-            this.Monto.HeaderText = "Total Pagado";
-            this.Monto.Name = "Monto";
-            this.Monto.Width = 81;
-            // 
-            // Estado
-            // 
-            this.Estado.DataPropertyName = "Estado";
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 81;
             // 
             // RegistrarVenta
             // 
@@ -810,8 +795,6 @@
         private System.Windows.Forms.RadioButton rbDni;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtMontoPagar;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkFecha;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdVenta;
@@ -823,6 +806,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FormaPago;
     }
 }
 

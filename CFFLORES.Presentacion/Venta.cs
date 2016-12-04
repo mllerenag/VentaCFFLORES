@@ -17,5 +17,7 @@ namespace CFFLORES.Presentacion
         public string Serie { get; set; }
         public decimal Monto { get; set; }
         public int Estado { get; set; }
+        public string FormaPago { get; set; }
+
     }
 }
