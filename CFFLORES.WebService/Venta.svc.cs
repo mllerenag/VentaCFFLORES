@@ -100,27 +100,34 @@ namespace CFFLORES.WebService
         public int Insertar(EVenta beventa)
         {
 
-            throw new WebFaultException<string>("datos: " + beventa.Cliente+ beventa.FormaPago, HttpStatusCode.InternalServerError);
-
-            if (beventa == null)
-                return 0;
-
-            if (String.IsNullOrEmpty(beventa.Dni) )
+            try
             {
-                throw new WebFaultException<string>("Debe imgresar el Cliente", HttpStatusCode.InternalServerError);
+                if (beventa == null)
+                    return 0;
+
+                if (String.IsNullOrEmpty(beventa.Dni))
+                {
+                    throw new WebFaultException<string>("Debe imgresar el Cliente", HttpStatusCode.InternalServerError);
+
+                }
+
+                if (beventa.Monto == 0)
+                {
+                    throw new WebFaultException<string>("El monto debe ser mayor a Cero", HttpStatusCode.InternalServerError);
+
+                }
+
+
+                int idventa;
+                idventa = dao.Insertar(beventa);
+                return idventa;
+            }
+            catch(WebException ex)
+            {
+                throw new WebFaultException<string>(ex.ToString(), HttpStatusCode.InternalServerError);
 
             }
-
-            if (beventa.Monto==0)
-            {
-                throw new WebFaultException<string>("El monto debe ser mayor a Cero", HttpStatusCode.InternalServerError);
-
-            }
-
-
-            int idventa;
-            idventa = dao.Insertar(beventa);
-            return idventa;
+          
 
         }
 

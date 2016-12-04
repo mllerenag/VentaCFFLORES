@@ -124,7 +124,7 @@ namespace CFFLORES.TestRest
         [TestMethod]
         public void TestInsertar()
         {
-            string strdni = "99999999";
+            string strdni = "99999955";
             string strtipdoc = "FACTURA";
             string strnrodoc = "25259";
             string strserie = "003";

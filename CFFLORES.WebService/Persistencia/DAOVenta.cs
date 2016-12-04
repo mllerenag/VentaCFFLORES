@@ -9,8 +9,8 @@ namespace CFFLORES.WebService.Persistencia
 {
     public class DAOVenta
     {
-        private string cadenaconexion = "Data Source=a1d03a2d-9c0f-4408-a40e-a6c90072de9e.sqlserver.sequelizer.com;Initial Catalog=dba1d03a2d9c0f4408a40ea6c90072de9e;User Id=tvmfwzevhnftvnla;Password=2Ccx6Hj4f3x55DK6Quii6SixnKvTrFciBYEozCMmQGhaFo3U5qeDwtdiuMkumxKF;";
-        //private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
+        //private string cadenaconexion = "Data Source=a1d03a2d-9c0f-4408-a40e-a6c90072de9e.sqlserver.sequelizer.com;Initial Catalog=dba1d03a2d9c0f4408a40ea6c90072de9e;User Id=tvmfwzevhnftvnla;Password=2Ccx6Hj4f3x55DK6Quii6SixnKvTrFciBYEozCMmQGhaFo3U5qeDwtdiuMkumxKF;";
+        private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
 
         public List<EVenta> Listar(string busqueda, string Valor, string fecha)
         {
@@ -77,12 +77,13 @@ namespace CFFLORES.WebService.Persistencia
              2: Anulado
              */
             List<EVenta> resultado = new List<EVenta>();
-
+            string sql = "update venta set Estado=@estado where Idventa=@idventa ";
+            /*
             string sql = "";
             if (venta.Estado ==0)
                 sql = "update venta set Estado=2 where Idventa=@idventa ";
             else 
-                sql = "update venta set Estado=Estado where Idventa=@idventa ";
+                sql = "update venta set Estado=@estado where Idventa=@idventa ";*/
             try
             {
                 using (SqlConnection con = new SqlConnection(cadenaconexion))
@@ -91,6 +92,7 @@ namespace CFFLORES.WebService.Persistencia
                     using (SqlCommand com = new SqlCommand(sql, con))
                     {
                         com.Parameters.Add(new SqlParameter("@idventa", venta.IdVenta));
+                        com.Parameters.Add(new SqlParameter("@estado", venta.Estado));
                         com.ExecuteNonQuery();
                     }
                 }
@@ -107,10 +109,9 @@ namespace CFFLORES.WebService.Persistencia
         public int Insertar(EVenta venta)
         {
 
+            string sql = "insert into Venta ([Dni],[Fecha],[TipoDoc],[NroDoc],[Serie],[Monto],[Estado],[Cliente],[FormaPago]) values (@dni,GETDATE(),@tipodoc,@nrodoc,@serie,@monto,@estado,@cliente,@formapago)";
 
-
-            string sql = "insert into Venta ([Dni],[Fecha],[TipoDoc],[NroDoc],[Serie],[Monto],[Estado],[Cliente],[FormaPago]) output INSERTED.ID values(@dni,GETDATE(),@tipodoc,@nrodoc,@serie,@monto,@estado,@cliente,@formapago,@idproducto)";
-            int idventa;
+            int idventa = 0;
 
             try
             {
@@ -120,26 +121,39 @@ namespace CFFLORES.WebService.Persistencia
                     using (SqlCommand com = new SqlCommand(sql, con))
                     {
                         com.Parameters.Add(new SqlParameter("@dni", venta.Dni));
-                        com.Parameters.Add(new SqlParameter("@fecha", venta.Fecha));
                         com.Parameters.Add(new SqlParameter("@tipodoc", venta.TipoDoc));
                         com.Parameters.Add(new SqlParameter("@nrodoc", venta.NroDoc));
                         com.Parameters.Add(new SqlParameter("@serie", venta.Serie));
                         com.Parameters.Add(new SqlParameter("@monto", venta.Monto));
                         com.Parameters.Add(new SqlParameter("@estado", venta.Estado));
                         com.Parameters.Add(new SqlParameter("@cliente", venta.Cliente));
-                        com.Parameters.Add(new SqlParameter("@formago", venta.FormaPago));
+                        com.Parameters.Add(new SqlParameter("@formapago", venta.FormaPago));
                         com.ExecuteNonQuery();
-                        idventa = (int)com.ExecuteScalar();
+                        
+                    }
+
+                    using (SqlCommand com = new SqlCommand("select max(idventa) from venta", con))
+                    {
+                        using (SqlDataReader dr = com.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                idventa = Convert.ToInt32(dr[0]);
+                            }
+                            dr.Close();
+                        }
+
                     }
 
                 }
                 return idventa;
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
+ 
         }
 
 

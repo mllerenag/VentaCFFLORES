@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Messaging;
 using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -40,27 +41,7 @@ namespace CFFLORES.Presentacion
         {
 
             insertar();
-            /*
-            MessageBox.Show("Usted se encuentra fuera del Horario de Venta. Consulte con su Administrador.",
-            "Advertencia",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information,
-            MessageBoxDefaultButton.Button1);
-
-            MessageBox.Show("Para realizar una Venta, primero debe Aperturar el Dia. Consulte con su Administrador.",
-            "Advertencia",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information,
-            MessageBoxDefaultButton.Button1);
-
-           
-
-            MessageBox.Show("Se realizó la Venta.",
-            "EXITO",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information,
-            MessageBoxDefaultButton.Button1);
-*/
+            Listar("1", "1", dateTimePicker1.Value.ToString("yyyyMMdd"));
 
 
             tabControl1.SelectedIndex = 0;
@@ -77,7 +58,7 @@ namespace CFFLORES.Presentacion
             string strcliente = "Manuel";
             string strformapago = cboFormaPago.Text;
 
-            string postdata = "{\"Dni\":\"" + "12345678" +
+            string postdata = "{\"Dni\":\"" + strdni +
                 "\",\"TipoDoc\":\"" + strtipdoc +
                 "\",\"NroDoc\":\"" + strnrodoc +
                 "\",\"Serie\":\"" + strserie +
@@ -191,13 +172,36 @@ namespace CFFLORES.Presentacion
                 {
                     if (Convert.ToBoolean(dgvVenta.Rows[i].Cells["Column1"].Value) == true)
                     {
-                        string id = dgvVenta.Rows[i].Cells["IdVenta"].Value.ToString();
-                        Modificar(id,"0");
+                        
+                        try
+                        {
+                            string id = dgvVenta.Rows[i].Cells["IdVenta"].Value.ToString();
+                            Modificar(id, "0");
 
+                        }catch(WebException ex)
+                        {
+                            string idventa = dgvVenta.Rows[i].Cells["IdVenta"].Value.ToString();
+                            string rutacola = @".\private$\cfflores";
+                            if (!MessageQueue.Exists(rutacola))
+                            {
+                                MessageQueue.Create(rutacola);
+                            }
+                            MessageQueue cola = new MessageQueue(rutacola);
+                            System.Messaging.Message mensaje = new System.Messaging.Message();
+                            mensaje.Label = "Nueva Nota";
+                            mensaje.Body = new Venta { IdVenta = Convert.ToInt32(idventa), Estado = 0 };
+
+                            cola.Send(mensaje);
+                            string id = mensaje.Id;
+                        }
                     }
                 }
                 Buscar();
             }
+
+
+
+
         }
 
         private void Modificar(string idcliente, string estado)
@@ -242,18 +246,37 @@ namespace CFFLORES.Presentacion
             }
             catch (WebException ex)
             {
-                HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
-                string message = ((HttpWebResponse)ex.Response).StatusDescription;
-                StreamReader reader = new StreamReader(ex.Response.GetResponseStream());
-                string error = reader.ReadToEnd();
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                string mensaje = js.Deserialize<string>(error);
+                try
+                {
+                    HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
+                    string message = ((HttpWebResponse)ex.Response).StatusDescription;
+                    StreamReader reader = new StreamReader(ex.Response.GetResponseStream());
+                    string error = reader.ReadToEnd();
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    string mensaje = js.Deserialize<string>(error);
 
-                MessageBox.Show(mensaje,
-                "Advertencia",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning,
-                MessageBoxDefaultButton.Button1);
+                    MessageBox.Show(mensaje,
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+                }
+                catch(Exception e)
+                {
+                    string idventa = idcliente;
+                    string rutacola = @".\private$\cfflores";
+                    if (!MessageQueue.Exists(rutacola))
+                    {
+                        MessageQueue.Create(rutacola);
+                    }
+                    MessageQueue cola = new MessageQueue(rutacola);
+                    System.Messaging.Message mensaje = new System.Messaging.Message();
+                    mensaje.Label = "Nueva Nota";
+                    mensaje.Body = new Venta { IdVenta = Convert.ToInt32(idventa), Estado = 2 };
+
+                    cola.Send(mensaje);
+               
+                }
 
             }
         }
@@ -294,11 +317,32 @@ namespace CFFLORES.Presentacion
 
             rbDni.Checked = true;
             rbVenta.Checked = false;
+            AnularVentas();
             Listar("1","1", dateTimePicker1.Value.ToString("yyyyMMdd"));
 
         }
 
-   
+        private void AnularVentas()
+        {
+            string rutacola = @".\private$\cfflores";
+            if (!MessageQueue.Exists(rutacola))
+            {
+                MessageQueue.Create(rutacola);
+            }
+            MessageQueue cola = new MessageQueue(rutacola);
+            cola.Formatter = new XmlMessageFormatter(new Type[] { typeof(Venta) });
+
+            System.Messaging.Message mensaje = cola.Receive();
+
+            if (mensaje != null)
+            {
+                Venta nota = (Venta)mensaje.Body;
+                Modificar(nota.IdVenta.ToString(), nota.Estado.ToString());
+
+            }
+
+        }
+
         public void Listar( string busqueda, string valor, string fecha)
         {
             try
@@ -323,18 +367,25 @@ namespace CFFLORES.Presentacion
             }
             catch (WebException ex)
             {
-                HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
-                string message = ((HttpWebResponse)ex.Response).StatusDescription;
-                StreamReader reader = new StreamReader(ex.Response.GetResponseStream());
-                string error = reader.ReadToEnd();
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                string mensaje = js.Deserialize<string>(error);
+                try
+                {
+                    HttpStatusCode code = ((HttpWebResponse)ex.Response).StatusCode;
+                    string message = ((HttpWebResponse)ex.Response).StatusDescription;
+                    StreamReader reader = new StreamReader(ex.Response.GetResponseStream());
+                    string error = reader.ReadToEnd();
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    string mensaje = js.Deserialize<string>(error);
 
-                MessageBox.Show(mensaje,
-                "Advertencia",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning,
-                MessageBoxDefaultButton.Button1);
+                    MessageBox.Show(mensaje,
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("En estos momentos tenemos problemas de comunicación");
+                }
 
             }
         }

@@ -700,7 +700,6 @@
             // 
             // txtCliente
             // 
-            this.txtCliente.Enabled = false;
             this.txtCliente.Location = new System.Drawing.Point(19, 44);
             this.txtCliente.Margin = new System.Windows.Forms.Padding(4);
             this.txtCliente.Name = "txtCliente";
