@@ -7,7 +7,7 @@ using System.Web.Script.Serialization;
 namespace CFFLORES.TestRest
 {
     [TestClass]
-    public class UnitTest1
+    public class Cliente
     {
         [TestMethod]
         public void TestMethod1()
