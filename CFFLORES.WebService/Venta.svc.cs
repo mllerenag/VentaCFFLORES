@@ -107,7 +107,7 @@ namespace CFFLORES.WebService
 
                 if (String.IsNullOrEmpty(beventa.Dni))
                 {
-                    throw new WebFaultException<string>("Debe imgresar el Cliente", HttpStatusCode.InternalServerError);
+                    throw new WebFaultException<string>("Debe ingresar el Cliente", HttpStatusCode.InternalServerError);
 
                 }
 
