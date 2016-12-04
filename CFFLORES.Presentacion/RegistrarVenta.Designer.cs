@@ -32,6 +32,17 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvVenta = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NroDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FormaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -49,19 +60,9 @@
             this.button5 = new System.Windows.Forms.Button();
             this.txtTotalPagar = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtigv = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtSubTotal = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvDetalleVenta = new System.Windows.Forms.DataGridView();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtProducto = new System.Windows.Forms.TextBox();
+            this.txtCodigoBarras = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -78,17 +79,25 @@
             this.button3 = new System.Windows.Forms.Button();
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NroDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FormaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtProducto = new System.Windows.Forms.TextBox();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtTotalProducto = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtIdProducto = new System.Windows.Forms.TextBox();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -161,6 +170,78 @@
             this.dgvVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVenta.Size = new System.Drawing.Size(885, 294);
             this.dgvVenta.TabIndex = 24;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 40;
+            // 
+            // IdVenta
+            // 
+            this.IdVenta.DataPropertyName = "IdVenta";
+            this.IdVenta.HeaderText = "IdVenta";
+            this.IdVenta.Name = "IdVenta";
+            this.IdVenta.Visible = false;
+            // 
+            // TipoDoc
+            // 
+            this.TipoDoc.DataPropertyName = "TipoDoc";
+            this.TipoDoc.HeaderText = "Tip.Doc";
+            this.TipoDoc.Name = "TipoDoc";
+            this.TipoDoc.Width = 81;
+            // 
+            // Serie
+            // 
+            this.Serie.DataPropertyName = "Serie";
+            this.Serie.HeaderText = "Serie";
+            this.Serie.Name = "Serie";
+            this.Serie.Width = 81;
+            // 
+            // NroDoc
+            // 
+            this.NroDoc.DataPropertyName = "NroDoc";
+            this.NroDoc.HeaderText = "N° Venta";
+            this.NroDoc.Name = "NroDoc";
+            this.NroDoc.Width = 82;
+            // 
+            // Dni
+            // 
+            this.Dni.DataPropertyName = "Dni";
+            this.Dni.HeaderText = "Dni";
+            this.Dni.Name = "Dni";
+            // 
+            // Cliente
+            // 
+            this.Cliente.DataPropertyName = "Cliente";
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.Name = "Cliente";
+            // 
+            // Fecha
+            // 
+            this.Fecha.DataPropertyName = "Fecha";
+            this.Fecha.HeaderText = "Fecha Venta";
+            this.Fecha.Name = "Fecha";
+            // 
+            // Monto
+            // 
+            this.Monto.DataPropertyName = "Monto";
+            this.Monto.HeaderText = "Total Pagado";
+            this.Monto.Name = "Monto";
+            this.Monto.Width = 81;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.Width = 81;
+            // 
+            // FormaPago
+            // 
+            this.FormaPago.DataPropertyName = "FormaPago";
+            this.FormaPago.HeaderText = "Forma Pago";
+            this.FormaPago.Name = "FormaPago";
             // 
             // button7
             // 
@@ -301,10 +382,6 @@
             this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.txtTotalPagar);
             this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.txtigv);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.txtSubTotal);
-            this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -358,48 +435,22 @@
             this.label12.TabIndex = 17;
             this.label12.Text = "Total a Pagar:";
             // 
-            // txtigv
-            // 
-            this.txtigv.Enabled = false;
-            this.txtigv.Location = new System.Drawing.Point(588, 375);
-            this.txtigv.Margin = new System.Windows.Forms.Padding(4);
-            this.txtigv.Name = "txtigv";
-            this.txtigv.Size = new System.Drawing.Size(89, 22);
-            this.txtigv.TabIndex = 16;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(543, 379);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 17);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "IGV:";
-            // 
-            // txtSubTotal
-            // 
-            this.txtSubTotal.Enabled = false;
-            this.txtSubTotal.Location = new System.Drawing.Point(445, 378);
-            this.txtSubTotal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSubTotal.Name = "txtSubTotal";
-            this.txtSubTotal.Size = new System.Drawing.Size(89, 22);
-            this.txtSubTotal.TabIndex = 14;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(373, 382);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 17);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Sub Total:";
-            // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dgvDetalleVenta);
+            this.groupBox4.Controls.Add(this.button9);
+            this.groupBox4.Controls.Add(this.txtIdProducto);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.txtTotalProducto);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.txtPrecio);
+            this.groupBox4.Controls.Add(this.txtCantidad);
+            this.groupBox4.Controls.Add(this.txtStock);
             this.groupBox4.Controls.Add(this.txtProducto);
+            this.groupBox4.Controls.Add(this.dgvDetalleVenta);
+            this.groupBox4.Controls.Add(this.txtCodigoBarras);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.button4);
             this.groupBox4.Location = new System.Drawing.Point(8, 138);
@@ -415,55 +466,27 @@
             // 
             this.dgvDetalleVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetalleVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdProducto,
             this.Column9,
             this.Column10,
-            this.Column11,
+            this.Stock,
             this.Column12,
             this.Column13,
             this.Column14});
-            this.dgvDetalleVenta.Location = new System.Drawing.Point(8, 60);
+            this.dgvDetalleVenta.Location = new System.Drawing.Point(8, 90);
             this.dgvDetalleVenta.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDetalleVenta.Name = "dgvDetalleVenta";
-            this.dgvDetalleVenta.Size = new System.Drawing.Size(872, 165);
+            this.dgvDetalleVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleVenta.Size = new System.Drawing.Size(872, 135);
             this.dgvDetalleVenta.TabIndex = 15;
             // 
-            // Column9
+            // txtCodigoBarras
             // 
-            this.Column9.HeaderText = "Codigo";
-            this.Column9.Name = "Column9";
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Producto";
-            this.Column10.Name = "Column10";
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Descripcion";
-            this.Column11.Name = "Column11";
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Cantidad";
-            this.Column12.Name = "Column12";
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "Precio";
-            this.Column13.Name = "Column13";
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "Total";
-            this.Column14.Name = "Column14";
-            // 
-            // txtProducto
-            // 
-            this.txtProducto.Location = new System.Drawing.Point(95, 30);
-            this.txtProducto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtProducto.Name = "txtProducto";
-            this.txtProducto.Size = new System.Drawing.Size(207, 22);
-            this.txtProducto.TabIndex = 14;
+            this.txtCodigoBarras.Location = new System.Drawing.Point(126, 30);
+            this.txtCodigoBarras.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoBarras.Name = "txtCodigoBarras";
+            this.txtCodigoBarras.Size = new System.Drawing.Size(207, 22);
+            this.txtCodigoBarras.TabIndex = 14;
             // 
             // label9
             // 
@@ -471,13 +494,13 @@
             this.label9.Location = new System.Drawing.Point(16, 33);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 17);
+            this.label9.Size = new System.Drawing.Size(102, 17);
             this.label9.TabIndex = 13;
-            this.label9.Text = "Producto:";
+            this.label9.Text = "Codigo Barras:";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(311, 27);
+            this.button4.Location = new System.Drawing.Point(341, 24);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(45, 28);
@@ -644,77 +667,164 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Cliente:";
             // 
-            // Column1
+            // txtProducto
             // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 40;
+            this.txtProducto.Enabled = false;
+            this.txtProducto.Location = new System.Drawing.Point(126, 60);
+            this.txtProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtProducto.Name = "txtProducto";
+            this.txtProducto.Size = new System.Drawing.Size(207, 22);
+            this.txtProducto.TabIndex = 16;
             // 
-            // IdVenta
+            // txtStock
             // 
-            this.IdVenta.DataPropertyName = "IdVenta";
-            this.IdVenta.HeaderText = "IdVenta";
-            this.IdVenta.Name = "IdVenta";
-            this.IdVenta.Visible = false;
+            this.txtStock.Enabled = false;
+            this.txtStock.Location = new System.Drawing.Point(392, 60);
+            this.txtStock.Margin = new System.Windows.Forms.Padding(4);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(70, 22);
+            this.txtStock.TabIndex = 17;
             // 
-            // TipoDoc
+            // txtCantidad
             // 
-            this.TipoDoc.DataPropertyName = "TipoDoc";
-            this.TipoDoc.HeaderText = "Tip.Doc";
-            this.TipoDoc.Name = "TipoDoc";
-            this.TipoDoc.Width = 81;
+            this.txtCantidad.Location = new System.Drawing.Point(551, 60);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(70, 22);
+            this.txtCantidad.TabIndex = 18;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
-            // Serie
+            // txtPrecio
             // 
-            this.Serie.DataPropertyName = "Serie";
-            this.Serie.HeaderText = "Serie";
-            this.Serie.Name = "Serie";
-            this.Serie.Width = 81;
+            this.txtPrecio.Enabled = false;
+            this.txtPrecio.Location = new System.Drawing.Point(689, 60);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(66, 22);
+            this.txtPrecio.TabIndex = 19;
             // 
-            // NroDoc
+            // label13
             // 
-            this.NroDoc.DataPropertyName = "NroDoc";
-            this.NroDoc.HeaderText = "N° Venta";
-            this.NroDoc.Name = "NroDoc";
-            this.NroDoc.Width = 82;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(16, 63);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(86, 17);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "Descripcion:";
             // 
-            // Dni
+            // label14
             // 
-            this.Dni.DataPropertyName = "Dni";
-            this.Dni.HeaderText = "Dni";
-            this.Dni.Name = "Dni";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(341, 63);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(47, 17);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "Stock:";
             // 
-            // Cliente
+            // label15
             // 
-            this.Cliente.DataPropertyName = "Cliente";
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.Name = "Cliente";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(475, 63);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(68, 17);
+            this.label15.TabIndex = 22;
+            this.label15.Text = "Cantidad:";
             // 
-            // Fecha
+            // label16
             // 
-            this.Fecha.DataPropertyName = "Fecha";
-            this.Fecha.HeaderText = "Fecha Venta";
-            this.Fecha.Name = "Fecha";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(629, 63);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(52, 17);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "Precio:";
             // 
-            // Monto
+            // txtTotalProducto
             // 
-            this.Monto.DataPropertyName = "Monto";
-            this.Monto.HeaderText = "Total Pagado";
-            this.Monto.Name = "Monto";
-            this.Monto.Width = 81;
+            this.txtTotalProducto.Enabled = false;
+            this.txtTotalProducto.Location = new System.Drawing.Point(813, 60);
+            this.txtTotalProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTotalProducto.Name = "txtTotalProducto";
+            this.txtTotalProducto.Size = new System.Drawing.Size(66, 22);
+            this.txtTotalProducto.TabIndex = 24;
             // 
-            // Estado
+            // label17
             // 
-            this.Estado.DataPropertyName = "Estado";
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 81;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(764, 63);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 17);
+            this.label17.TabIndex = 25;
+            this.label17.Text = "Total:";
             // 
-            // FormaPago
+            // txtIdProducto
             // 
-            this.FormaPago.DataPropertyName = "FormaPago";
-            this.FormaPago.HeaderText = "Forma Pago";
-            this.FormaPago.Name = "FormaPago";
+            this.txtIdProducto.Enabled = false;
+            this.txtIdProducto.Location = new System.Drawing.Point(410, 27);
+            this.txtIdProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIdProducto.Name = "txtIdProducto";
+            this.txtIdProducto.Size = new System.Drawing.Size(70, 22);
+            this.txtIdProducto.TabIndex = 26;
+            this.txtIdProducto.Visible = false;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.DataPropertyName = "IdProducto";
+            this.IdProducto.HeaderText = "IdProducto";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "codigobarra";
+            this.Column9.HeaderText = "Codigo Barras";
+            this.Column9.Name = "Column9";
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "Nombre";
+            this.Column10.HeaderText = "Producto";
+            this.Column10.Name = "Column10";
+            // 
+            // Stock
+            // 
+            this.Stock.DataPropertyName = "Stock";
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "Cantidad";
+            this.Column12.HeaderText = "Cantidad";
+            this.Column12.Name = "Column12";
+            // 
+            // Column13
+            // 
+            this.Column13.DataPropertyName = "Precio";
+            this.Column13.HeaderText = "Precio";
+            this.Column13.Name = "Column13";
+            // 
+            // Column14
+            // 
+            this.Column14.DataPropertyName = "Total";
+            this.Column14.HeaderText = "Total";
+            this.Column14.Name = "Column14";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(754, 21);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(45, 28);
+            this.button9.TabIndex = 27;
+            this.button9.Text = "+";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // RegistrarVenta
             // 
@@ -760,13 +870,9 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtTotalPagar;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtigv;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtSubTotal;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dgvDetalleVenta;
-        private System.Windows.Forms.TextBox txtProducto;
+        private System.Windows.Forms.TextBox txtCodigoBarras;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -783,12 +889,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridView dgvVenta;
         private System.Windows.Forms.RadioButton rbVenta;
         private System.Windows.Forms.RadioButton rbDni;
@@ -806,6 +906,25 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn FormaPago;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtTotalProducto;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.TextBox txtStock;
+        private System.Windows.Forms.TextBox txtProducto;
+        private System.Windows.Forms.TextBox txtIdProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.Button button9;
     }
 }
 

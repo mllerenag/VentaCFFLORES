@@ -25,7 +25,31 @@ namespace CFFLORES.Presentacion
         {
             ConsultarProducto frmProducto = new ConsultarProducto();
             frmProducto.ShowDialog();
-            //frmProducto.idProducto
+            txtIdProducto.Text = frmProducto.idProducto.ToString();
+            txtCodigoBarras.Text = frmProducto.codigobarras;
+            txtProducto.Text = frmProducto.desProducto.ToString();
+            txtStock.Text = frmProducto.stock.ToString();
+            txtPrecio.Text = frmProducto.precio.ToString();
+            txtCantidad.Text = "1";
+            txtCantidad.Focus();
+           /* Producto productoEncontrado = new Producto()
+            {
+                IdProducto = frmProducto.idProducto,
+                codigobarra = frmProducto.codigobarras,
+                Nombre = frmProducto.desProducto,
+                Stock = frmProducto.stock,
+                Precio = frmProducto.precio,
+                //Estado = frmProducto.estado
+                //Tipo = (string)resultado["Tipo"]
+            };
+            List<Producto> productolista = new List<Producto>();
+            productolista.Add(productoEncontrado);
+
+            dgvDetalleVenta.AutoGenerateColumns = true;
+            BindingSource bindingSource1 = new BindingSource();
+            bindingSource1.DataSource = productolista;
+            dgvDetalleVenta.DataSource = bindingSource1;*/
+           //            this.dgvDetalleVenta.CurrentCell = this.dgvDetalleVenta[4, 0];
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -41,7 +65,10 @@ namespace CFFLORES.Presentacion
         private void button5_Click(object sender, EventArgs e)
         {
 
-            insertar();
+            int idventa = insertar();
+            if (idventa == 0)
+                return;
+            insertardetalle(idventa);
             Listar("1", "1", dateTimePicker1.Value.ToString("yyyyMMdd"));
 
 
@@ -49,14 +76,19 @@ namespace CFFLORES.Presentacion
             this.tabControl1.TabPages.Remove(this.tabPage2);
         }
 
-        private void insertar()
+        private void insertardetalle(int idventa)
+        {
+            return;
+        }
+
+        private int insertar()
         {
             string strdni = txtCliente.Text;
             string strtipdoc = cboTipoDocumento.Text;
             string strnrodoc = txtNroVenta.Text;
             string strserie = txtSerie.Text;
-            double doumonto = Convert.ToDouble("150.50");
-            string strcliente = "Manuel";
+            double doumonto = Convert.ToDouble(txtTotalPagar.Text);
+            string strcliente = "XXXXXXXX";
             string strformapago = cboFormaPago.Text;
 
             string postdata = "{\"Dni\":\"" + strdni +
@@ -89,16 +121,7 @@ namespace CFFLORES.Presentacion
                 //dgvVenta.AutoGenerateColumns = false;
                 //dgvVenta.DataSource = registros;
 
-
-                    MessageBox.Show("Id Venta " + idventa.ToString(),
-                     "Exito",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information,
-                     MessageBoxDefaultButton.Button1);
-
-
-
-
+                return idventa;
 
             }
             catch (WebException ex)
@@ -116,6 +139,7 @@ namespace CFFLORES.Presentacion
                 MessageBoxIcon.Warning,
                 MessageBoxDefaultButton.Button1);
 
+                return 0;
             }
         }
 
@@ -451,6 +475,53 @@ namespace CFFLORES.Presentacion
                 txtSerie.Text = "001";
             if (cboTipoDocumento.Text.Equals("FACTURA"))
                 txtSerie.Text = "003";
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtCantidad.Text))
+                return ;
+            double val1 = Convert.ToDouble(txtPrecio.Text);
+            double val2 = Convert.ToDouble(txtCantidad.Text);
+            double val3 = val1 * val2;
+            txtTotalProducto.Text = val3.ToString();
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Producto productoEncontrado = new Producto()
+            {
+                IdProducto = Convert.ToInt32(txtIdProducto.Text),
+                codigobarra = txtCodigoBarras.Text,
+                Nombre = txtProducto.Text,
+                Stock = Convert.ToInt32(txtStock.Text),
+                Precio = Convert.ToDouble(txtPrecio.Text),
+                Cantidad = Convert.ToInt32(txtCantidad.Text),
+                Total = Convert.ToDouble(txtTotalProducto.Text)
+
+            };
+            List<Producto> productolista = new List<Producto>();
+            productolista.Add(productoEncontrado);
+
+            dgvDetalleVenta.AutoGenerateColumns = false;
+            dgvDetalleVenta.DataSource = productolista;
+
+            txtTotalPagar.Text = productolista[0].Total.ToString();
+
+
+            limpiardetalle();
+        }
+
+        private void limpiardetalle()
+        {
+            txtIdProducto.Text = "";
+            txtCodigoBarras.Text = "";
+           txtProducto.Text = "";
+            txtStock.Text = "";
+            txtPrecio.Text = "";
+           txtCantidad.Text = "";
+            txtTotalProducto.Text = "";
         }
     }
 }

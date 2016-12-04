@@ -14,7 +14,11 @@ namespace CFFLORES.Presentacion
     {
 
         public int idProducto;
+        public string codigobarras;
         public string desProducto;
+        public int stock;
+        public double precio;
+        public string estado;
         public ConsultarProducto()
         {
             InitializeComponent();
@@ -68,9 +72,12 @@ namespace CFFLORES.Presentacion
 
         private void dgvProducto_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            string idproducto = dgvProducto[0, e.RowIndex].Value.ToString();
-            string codigobarra = dgvProducto[1, e.RowIndex].Value.ToString();
-            MessageBox.Show(idproducto);
+            idProducto = Convert.ToInt32(dgvProducto[0, e.RowIndex].Value.ToString());
+            codigobarras = dgvProducto[1, e.RowIndex].Value.ToString();
+            desProducto = dgvProducto[2, e.RowIndex].Value.ToString();
+            stock = Convert.ToInt32(dgvProducto[3, e.RowIndex].Value.ToString());
+            precio = Convert.ToDouble(dgvProducto[4, e.RowIndex].Value.ToString());
+            estado = dgvProducto[5, e.RowIndex].Value.ToString();
         }
     }
 }
