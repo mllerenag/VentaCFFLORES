@@ -9,8 +9,8 @@ namespace CFFLORES.WebService.Persistencia
 {
     public class DAOProducto
     {
-        //private string cadenaconexion = "Data Source=a1d03a2d-9c0f-4408-a40e-a6c90072de9e.sqlserver.sequelizer.com;Initial Catalog=dba1d03a2d9c0f4408a40ea6c90072de9e;User Id=tvmfwzevhnftvnla;Password=2Ccx6Hj4f3x55DK6Quii6SixnKvTrFciBYEozCMmQGhaFo3U5qeDwtdiuMkumxKF;";
-        private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
+        private string cadenaconexion = "Data Source=a1d03a2d-9c0f-4408-a40e-a6c90072de9e.sqlserver.sequelizer.com;Initial Catalog=dba1d03a2d9c0f4408a40ea6c90072de9e;User Id=tvmfwzevhnftvnla;Password=2Ccx6Hj4f3x55DK6Quii6SixnKvTrFciBYEozCMmQGhaFo3U5qeDwtdiuMkumxKF;";
+        //private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
         public List<EProducto> ObtenerProducto(string codigobarra, string nombre, string tipo)
         {
             //productos
@@ -47,6 +47,7 @@ namespace CFFLORES.WebService.Persistencia
                             {
                                 productoEncontrado = new EProducto()
                                 {
+                                    IdProducto = Int32.Parse(resultado["IdProducto"].ToString()),
                                     codigobarra = (string)resultado["CodigoBarra"],
                                     Nombre = (string)resultado["Nombre"],
                                     Stock = Int32.Parse(resultado["Stock"].ToString()),
@@ -126,6 +127,7 @@ namespace CFFLORES.WebService.Persistencia
                             {
                                 productobe = new EProducto()
                                 {
+                                    IdProducto = Int32.Parse(resultado["IdProducto"].ToString()),
                                     codigobarra = (string)resultado["CodigoBarra"].ToString(),
                                     Nombre = (string)resultado["Nombre"].ToString(),
                                     Stock = Int32.Parse(resultado["Stock"].ToString()),

@@ -35,17 +35,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.txtCodigoBarra = new System.Windows.Forms.TextBox();
             this.dgvProducto = new System.Windows.Forms.DataGridView();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboTipo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoBarra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cboTipo = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
             this.SuspendLayout();
@@ -101,6 +102,7 @@
             // 
             this.dgvProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.CodigoBarra,
             this.Nombre,
             this.Stock,
@@ -115,48 +117,6 @@
             this.dgvProducto.TabIndex = 10;
             this.dgvProducto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dgvProducto.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProducto_CellMouseDoubleClick);
-            // 
-            // CodigoBarra
-            // 
-            this.CodigoBarra.DataPropertyName = "CodigoBarra";
-            this.CodigoBarra.HeaderText = "CodigoBarra";
-            this.CodigoBarra.Name = "CodigoBarra";
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Stock
-            // 
-            this.Stock.DataPropertyName = "Stock";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Stock.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            // 
-            // Precio
-            // 
-            this.Precio.DataPropertyName = "Precio";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            // 
-            // Estado
-            // 
-            this.Estado.DataPropertyName = "Estado";
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            // 
-            // Tipo
-            // 
-            this.Tipo.DataPropertyName = "Tipo";
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
             // 
             // txtDescripcion
             // 
@@ -210,6 +170,55 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Codigo:";
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "IdProducto";
+            this.Id.HeaderText = "IdProducto";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // CodigoBarra
+            // 
+            this.CodigoBarra.DataPropertyName = "CodigoBarra";
+            this.CodigoBarra.HeaderText = "CodigoBarra";
+            this.CodigoBarra.Name = "CodigoBarra";
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Stock
+            // 
+            this.Stock.DataPropertyName = "Stock";
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Stock.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            // 
+            // Precio
+            // 
+            this.Precio.DataPropertyName = "Precio";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "Tipo";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            // 
             // ConsultarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -240,6 +249,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoBarra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;

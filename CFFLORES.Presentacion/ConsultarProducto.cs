@@ -68,7 +68,8 @@ namespace CFFLORES.Presentacion
 
         private void dgvProducto_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            string idproducto = dgvProducto[e.ColumnIndex, e.RowIndex].Value.ToString();
+            string idproducto = dgvProducto[0, e.RowIndex].Value.ToString();
+            string codigobarra = dgvProducto[1, e.RowIndex].Value.ToString();
             MessageBox.Show(idproducto);
         }
     }

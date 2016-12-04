@@ -24,6 +24,19 @@ namespace CFFLORES.WebService
             if (String.IsNullOrEmpty(tipo)) tipo = "";
 
             /*Se valida que exista Producto*/
+            if (codigobarra.Length == 0 && nombre.Length == 0 && tipo.Length == 0)
+            {
+                throw new FaultException<ProductoInexistente>(
+                    new ProductoInexistente()
+                    {
+                        exCodigo = 14,
+                        exError = "Por lo menos debe llenar un campo para buscar."
+                    }
+                , new FaultReason("Por lo menos debe llenar un campo para buscar."));
+
+            }
+
+            /*Se valida que exista Producto*/
             if (codigobarra.Length != 0 && (nombre.Length !=0 || tipo.Length !=0))
             {
                 throw new FaultException<ProductoInexistente>(
@@ -39,7 +52,7 @@ namespace CFFLORES.WebService
             List<EProducto> ObProducto = new List<EProducto>();
             ObProducto = daoproducto.ObtenerProducto(codigobarra,nombre,tipo);
             /*Se valida que exista Producto*/
-            if (ObProducto.Capacity == 0)
+            if (ObProducto.Count == 0)
             {
                 throw new FaultException<ProductoInexistente>(
                     new ProductoInexistente()

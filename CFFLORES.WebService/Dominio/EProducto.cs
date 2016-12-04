@@ -10,6 +10,8 @@ namespace CFFLORES.WebService.Dominio
     public class EProducto
     {
         [DataMember]
+        public int IdProducto { get; set; }
+        [DataMember]
         public string codigobarra { get; set; }
         [DataMember]
         public string Nombre { get; set; }
