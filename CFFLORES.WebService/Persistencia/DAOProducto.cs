@@ -13,6 +13,7 @@ namespace CFFLORES.WebService.Persistencia
         //private string cadenaconexion = "Data Source=LAPTOP-C3204AHJ\\SQLEXPRESS;Initial Catalog=CFFLORESDB;Integrated Security=True";
         public List<EProducto> ObtenerProducto(string codigobarra, string nombre, string tipo)
         {
+            //productos
             List<EProducto> productolista = new List<EProducto>();
             EProducto productoEncontrado = null;
 
