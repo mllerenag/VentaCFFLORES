@@ -86,7 +86,7 @@ namespace CFFLORES.Presentacion
 
         private void Buscar()
         {
-            Listar("2", txtBusCliente1.Text);
+            Listar("1", txtBusCliente1.Text);
 
         }
 
