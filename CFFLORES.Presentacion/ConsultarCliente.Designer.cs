@@ -29,139 +29,146 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dgvCliente = new System.Windows.Forms.DataGridView();
+            this.txtBusCliente1 = new System.Windows.Forms.TextBox();
+            this.dgvclientebuscar = new System.Windows.Forms.DataGridView();
+            this.Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBusCliente2 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvclientebuscar)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.txtBusCliente2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.dgvCliente);
+            this.groupBox1.Controls.Add(this.txtBusCliente1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(541, 458);
+            this.groupBox1.Size = new System.Drawing.Size(406, 372);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // button1
+            // button2
             // 
-            this.button1.Location = new System.Drawing.Point(400, 27);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button2.Location = new System.Drawing.Point(300, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Buscar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // dgvCliente
             // 
-            this.textBox1.Location = new System.Drawing.Point(121, 22);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 22);
-            this.textBox1.TabIndex = 3;
+            this.dgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCliente.Location = new System.Drawing.Point(17, 81);
+            this.dgvCliente.Name = "dgvCliente";
+            this.dgvCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCliente.Size = new System.Drawing.Size(390, 248);
+            this.dgvCliente.TabIndex = 10;
+            this.dgvCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
-            // dataGridView1
+            // txtBusCliente1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
-            this.dataGridView1.Location = new System.Drawing.Point(8, 100);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(520, 348);
-            this.dataGridView1.TabIndex = 10;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.txtBusCliente1.Location = new System.Drawing.Point(113, 19);
+            this.txtBusCliente1.Name = "txtBusCliente1";
+            this.txtBusCliente1.Size = new System.Drawing.Size(135, 20);
+            this.txtBusCliente1.TabIndex = 9;
+            this.txtBusCliente1.TextChanged += new System.EventHandler(this.txtBusCliente1_TextChanged);
             // 
-            // Column1
+            // dgvclientebuscar
             // 
-            this.Column1.HeaderText = "DNI";
-            this.Column1.Name = "Column1";
+            this.dgvclientebuscar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvclientebuscar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Dni,
+            this.Nombre,
+            this.Column2});
+            this.dgvclientebuscar.Location = new System.Drawing.Point(18, 93);
+            this.dgvclientebuscar.Name = "dgvclientebuscar";
+            this.dgvclientebuscar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvclientebuscar.Size = new System.Drawing.Size(401, 239);
+            this.dgvclientebuscar.TabIndex = 25;
+            // 
+            // Dni
+            // 
+            this.Dni.DataPropertyName = "Dni";
+            this.Dni.HeaderText = "Dni";
+            this.Dni.Name = "Dni";
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Nombre";
+            this.Column2.DataPropertyName = "Direccion";
+            this.Column2.HeaderText = "Direccion";
             this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Apellido";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Distrito";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Direccion";
-            this.Column5.Name = "Column5";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(158, 55);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(179, 22);
-            this.textBox2.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 59);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Nombre Completo:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(17, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "DNI:";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Dni";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(23, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Nombre";
+            // 
+            // txtBusCliente2
+            // 
+            this.txtBusCliente2.Location = new System.Drawing.Point(113, 46);
+            this.txtBusCliente2.Name = "txtBusCliente2";
+            this.txtBusCliente2.Size = new System.Drawing.Size(135, 20);
+            this.txtBusCliente2.TabIndex = 15;
             // 
             // ConsultarCliente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 478);
+            this.ClientSize = new System.Drawing.Size(421, 388);
+            this.Controls.Add(this.dgvclientebuscar);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ConsultarCliente";
             this.Text = "Consultar Cliente";
+            this.Load += new System.EventHandler(this.ConsultarCliente_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvclientebuscar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -169,17 +176,17 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dgvCliente;
+        private System.Windows.Forms.TextBox txtBusCliente1;
+        private System.Windows.Forms.DataGridView dgvclientebuscar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtBusCliente2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
 
     }
 }
