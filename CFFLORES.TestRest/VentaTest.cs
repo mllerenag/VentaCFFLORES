@@ -78,7 +78,7 @@ namespace CFFLORES.TestRest
              1: Contabilizado
              2: Anulado
              */
-            string idcliente = "6";
+            string idcliente = "9";
             string estado = "2";// 0: Venta; 2:Anular
 
             string postdata = "{\"IdVenta\":\"" + idcliente + "\",\"Estado\":\"" + estado + "\"}";
@@ -128,9 +128,9 @@ namespace CFFLORES.TestRest
         [TestMethod]
         public void TestInsertar()
         {
-            string strdni = "99999955";
+            string strdni = "66666666";
             string strtipdoc = "FACTURA";
-            string strnrodoc = "25259";
+            string strnrodoc = "00007";
             string strserie = "003";
             double doumonto = Convert.ToDouble("150.50");
             string strcliente = "Manuel";
