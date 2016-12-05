@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CFFLORES.Presentacion
-{
+{ //entidad
     public class Cliente
     {
 

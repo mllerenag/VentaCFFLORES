@@ -63,17 +63,24 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cliente.svc" />
     <Content Include="Producto.svc" />
     <Content Include="Venta.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.svc.cs">
+      <DependentUpon>Cliente.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\ECliente.cs" />
     <Compile Include="Dominio\EProducto.cs" />
     <Compile Include="Dominio\EVenta.cs" />
     <Compile Include="Errores\ProductoInexistente.cs" />
     <Compile Include="Errores\RepetidoException.cs" />
+    <Compile Include="ICliente.cs" />
     <Compile Include="IProducto.cs" />
     <Compile Include="IVenta.cs" />
+    <Compile Include="Persistencia\DAOCliente.cs" />
     <Compile Include="Persistencia\DAOProducto.cs" />
     <Compile Include="Persistencia\DAOVenta.cs" />
     <Compile Include="Producto.svc.cs">
