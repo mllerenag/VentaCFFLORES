@@ -88,10 +88,10 @@ namespace CFFLORES.Presentacion
         {
             if (txtBusCliente1.Text.Trim().Length!=0)
             Listar("1", txtBusCliente1.Text);
-
-            if (txtBusCliente2.Text.Trim().Length != 0)
+            else if (txtBusCliente2.Text.Trim().Length != 0)
                 Listar("2", txtBusCliente2.Text);
-
+            else if (txtBusCliente1.Text.Trim().Length == 0 && txtBusCliente2.Text.Trim().Length == 0)
+                Listar("1", "1");
         }
 
 

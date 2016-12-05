@@ -19,7 +19,7 @@ namespace CFFLORES.WebService.Persistencia
             if (busqueda.Equals("1")) //Listar
                 sql = "SELECT * FROM Cliente5  where dni = " + Valor;
             else if (busqueda.Equals("2")) //Por Dni
-                sql = "SELECT * FROM Cliente5 where nombre = " + Valor;
+                sql = "SELECT * FROM Cliente5 where nombre = '" + Valor+"'";
                
             try
             {

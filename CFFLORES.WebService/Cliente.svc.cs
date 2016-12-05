@@ -22,6 +22,11 @@ namespace CFFLORES.WebService
             if (String.IsNullOrEmpty(busqueda)) busqueda = "1";
             if (String.IsNullOrEmpty(Valor)) Valor = "1";
 
+            if (busqueda.Equals("1") && Valor.Equals("1"))
+            {
+                throw new WebFaultException<string>("Debe ingresar por lo menos un dato", HttpStatusCode.InternalServerError);
+            }
+
             if (busqueda.Equals("1") &&  Valor.Length != 8)//Busqueda por DNI
             {
                 throw new WebFaultException<string>("La Búsqueda por DNI debe contener 8 Caracteres", HttpStatusCode.InternalServerError);
@@ -31,7 +36,6 @@ namespace CFFLORES.WebService
             {
                 throw new WebFaultException<string>("La descripcion debe contener valores", HttpStatusCode.InternalServerError);
             }
-
 
             List<ECliente> obobCliente = new List<ECliente>();
             obobCliente = dao.Listar(busqueda, Valor);
