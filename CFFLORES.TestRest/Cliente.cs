@@ -14,7 +14,7 @@ namespace CFFLORES.TestRest
         {
             try
             {
-                string busqueda = "2";
+                string busqueda = "1";
                 string valor = "12345678";
                 //dgvVenta.DataSource = daoproducto.ListarProducto();
                 string URLAuth = "http://localhost:24832/Cliente.svc/Clientes?Gbusqueda=" + busqueda + "&Gvalor=" + valor.ToString();
